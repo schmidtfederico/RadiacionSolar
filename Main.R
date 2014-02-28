@@ -1,3 +1,5 @@
+require('sirad')
+
 # Incluimos las funciones de conexión y manejo de la conexión PostgreSQL.
 source("db/PostgreSQL/PostgreSQL.r")
 

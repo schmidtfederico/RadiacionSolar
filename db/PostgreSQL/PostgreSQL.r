@@ -1,6 +1,5 @@
 require('DBI')
 require('RPostgreSQL')
-library(tools)
 
 drv <- dbDriver("PostgreSQL")
 
@@ -38,7 +37,7 @@ get_password = function(username, directory=NULL, ext='.pwd') {
     if(can_read[[file]] == 0) {
         return(readLines(file))
     }
-    # Si no se encontrar o leer el archivo, devolvemos un string vacío que va
+    # Si no se puede encontrar o leer el archivo, devolvemos un string vacío que va
     # a dar error cuando se intente realizar la conexión.
     return("")
 }
