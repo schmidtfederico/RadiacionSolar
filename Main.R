@@ -11,7 +11,7 @@ rs.estacion <- dbSendQuery(con, "SELECT * FROM estacion e WHERE e.omm_id = 87484
 est <- fetch(rs.estacion, n=1)
 
 # Obtenemos 100 registros de dicha estación donde se tenga valores para todas las variables meteorológicas.
-rs.registros.diarios <- dbSendQuery(con, "SELECT fecha, tmax, tmin, prcp, helio FROM estacion_registro_diario e WHERE omm_id = 87484 AND (tmax NOTNULL AND tmin NOTNULL AND prcp NOTNULL AND helio > 0) LIMIT 100")
+rs.registros.diarios <- dbSendQuery(con, "SELECT fecha, tmax, tmin, prcp, helio FROM estacion_registro_diario e WHERE omm_id = 87484 AND (tmax NOTNULL AND tmin NOTNULL AND prcp NOTNULL AND helio > 0) ORDER BY 1 LIMIT 100")
 result <- fetch(rs.registros.diarios,n=-1)
 
 # Convertimos las fechas de la query en variables Date.
@@ -22,6 +22,6 @@ bc.rad <- estimar.por.bc(est, result, fechas)
 mh.rad <- estimar.por.mh(est, result, fechas)
 ha.rad <- estimar.por.ha(est, result, fechas)
 
-df <- data.frame(bc.rad, mh.rad, ha.rad, result$prcp, result$helio)
+df <- data.frame(fechas, bc.rad, mh.rad, ha.rad, result$prcp, result$helio)
 
 pg_disconnect(con)
