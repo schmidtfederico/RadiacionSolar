@@ -1,4 +1,6 @@
 source("init/init.R")
+source("rad/EstimacionPorTemperaturas.R")
+
 # Creamos la conexión con la base de datos.
 con <- pg_connect(user="crcssa_user", dbname="crcssa_salado", port=10521)
 # Registramos el evento de cerrar la conexión automáticamente al salir de R.
@@ -14,10 +16,12 @@ result <- fetch(rs.registros.diarios,n=-1)
 
 # Convertimos las fechas de la query en variables Date.
 fechas <- as.Date(result$fecha)
-# Calculamos el porcentaje de días que llovió en el conjunto de registros.
-porcentaje.lluvias <- length(result$prcp[result$prcp > 0]) / length(result$prcp) * 100
 
-# Calibramos el modelo de Bristow-Campbell y obtenemos el coeficiente 'B'.
-BCb <- bcauto(lat=est$lat_dec, lon=est$lon_dec, days=fechas, Tmax=result$tmax, Tmin=result$tmin, tal=0.65, perce=porcentaje.lluvias)
-# Corremos el modelo de Bristow-Campbell y obtenemos la radiación solar.
-bc(days=fechas, lat=est$lat_dec, BCb=BCb, Tmax=result$tmax, Tmin=result$tmin, tal=0.65)
+# Estimamos por los métodos de estimación que usan la temperatura máxima y mínima.
+bc.rad <- estimar.por.bc(est, result, fechas)
+mh.rad <- estimar.por.mh(est, result, fechas)
+ha.rad <- estimar.por.ha(est, result, fechas)
+
+df <- data.frame(bc.rad, mh.rad, ha.rad, result$prcp, result$helio)
+
+pg_disconnect(con)
