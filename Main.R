@@ -1,7 +1,4 @@
-require('sirad')
-
-# Incluimos las funciones de conexión y manejo de la conexión PostgreSQL.
-source("db/PostgreSQL/PostgreSQL.r")
+source("init/init.R")
 
 con <- pg_connect(user="crcssa_user", dbname="crcssa_salado", port=10521)
 

@@ -4,13 +4,14 @@
 
 options(install.packages.check.source = FALSE)
 # Paquetes de acceso a bases de datos.
-install.packages('DBI')
-install.packages('RPostgreSQL')
+if(!require('DBI')) { install.packages('DBI'); require('DBI') }
+if(!require('RPostgreSQL')) { install.packages('DBI'); require('RPostgreSQL') }
+
 
 # Paquetes de estimación de radiación solar.
-install.packages('zoo')
+if(!require('zoo')) { install.packages('DBI'); require('zoo') }
 # Requiere instalar en el SO Host el paquete: 'libnetcdf-dev'.
-install.packages('ncdf')
+if(!require('ncdf')) { install.packages('DBI'); require('ncdf') }
 # Requiere la instalacion de 'libudunits2-dev' en el sistema host.
-install.packages('RNetCDF')
-install.packages('sirad')
+if(!require('RNetCDF')) { install.packages('DBI'); require('RNetCDF') }
+if(!require('sirad')) { install.packages('DBI'); require('sirad') }
