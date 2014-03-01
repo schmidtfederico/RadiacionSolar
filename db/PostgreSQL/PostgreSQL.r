@@ -12,6 +12,8 @@ pg_connect <- function(user='postgres', dbname, host='localhost', password=NULL,
         password = get_password(user)
     }
     connection = dbConnect(drv, port=port, user=user, dbname=dbname, host=host, password=password)
+    # Registramos el evento de cerrar la conexión automáticamente al salir de R.
+    on.exit(pg_disconnect(con))
     return(connection)
 }
 
