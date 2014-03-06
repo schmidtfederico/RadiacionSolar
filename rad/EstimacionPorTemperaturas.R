@@ -1,4 +1,9 @@
-tal=0.7
+source("rad/Calibracion.R")
+
+# Transmisividad atmosférica.
+tal=0.77
+
+BCb <- calibrar.bc()
 
 estimar.por.bc <- function(estacion, result, fechas){
     # Calculamos el porcentaje de días que llovió en el conjunto de registros.
