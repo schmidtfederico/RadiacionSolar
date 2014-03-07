@@ -3,7 +3,7 @@ source("rad/Calibracion.R")
 # Transmisividad atmosférica.
 tal=0.77
 
-BCb <- calibrar.bc()
+BCb.avg <- calibrar.bc.avg()
 
 estimar.por.bc <- function(estacion, result, fechas){
     # Calculamos el porcentaje de días que llovió en el conjunto de registros.
@@ -13,6 +13,13 @@ estimar.por.bc <- function(estacion, result, fechas){
     BCb <- bcauto(lat=estacion$lat_dec, lon=estacion$lon_dec, days=fechas, Tmax=result$tmax, Tmin=result$tmin, tal=tal, perce=porcentaje.lluvias)
     # Corremos el modelo de Bristow-Campbell y obtenemos la radiación solar.
     return(bc(days=fechas, lat=estacion$lat_dec, BCb=BCb, Tmax=result$tmax, Tmin=result$tmin, tal=tal))
+}
+
+estimar.por.bc.csv <- function (lat, data, BCb=NULL) {
+    if(is.null(BCb)){
+        BCb <- BCb.avg
+    }
+    return(bc(days=as.Date(data$Date), lat=lat, BCb=BCb, Tmax=data$Tmax, Tmin=data$Tmin, tal=tal))
 }
 
 estimar.por.ha <- function(estacion, result, fechas) {
@@ -27,3 +34,4 @@ estimar.por.ha <- function(estacion, result, fechas) {
 estimar.por.mh <- function(estacion, result, fechas) {
     return(mh(days=fechas, lat=estacion$lat_dec, Tmax=result$tmax, Tmin=result$tmin))
 }
+
