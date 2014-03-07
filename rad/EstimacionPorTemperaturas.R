@@ -31,7 +31,15 @@ estimar.por.ha <- function(estacion, result, fechas) {
     return(ha(days=fechas, lat=estacion$lat_dec, A=hvalues[[1]], B=hvalues[[2]], Tmax=result$tmax, Tmin=result$tmin))
 }
 
+estimar.por.ha.csv <- function (lat, data, ha.cal) {
+    return(ha(days=as.Date(data$Date), lat=lat, Tmax=data$Tmax, Tmin=data$Tmin, A=ha.cal[[1]], B=ha.cal[[2]]))
+}
+
 estimar.por.mh <- function(estacion, result, fechas) {
     return(mh(days=fechas, lat=estacion$lat_dec, Tmax=result$tmax, Tmin=result$tmin))
+}
+
+estimar.por.mh.csv <- function(lat, data){
+    return(mh(days=as.Date(data$Date), lat=lat, Tmax=data$Tmax, Tmin=data$Tmin))
 }
 

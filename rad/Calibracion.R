@@ -18,6 +18,11 @@ calibrar.bc.csv <- function(lat, data) {
     return(bccal(lat=lat, days=as.Date(not.null.solrad$Date), rad_mea=not.null.solrad$Solrad, Tmax=not.null.solrad$Tmax, Tmin=not.null.solrad$Tmin, tal=0.77))
 }
 
+calibrar.ha.csv <- function(lat, data) {
+    not.null.solrad <- data[!is.na(data$Solrad),]
+    return(hacal(lat=lat, days=as.Date(not.null.solrad$Date), rad_mea=not.null.solrad$Solrad, tmax=not.null.solrad$Tmax, tmin=not.null.solrad$Tmin))
+}
+
 calibrar.ap.csv <- function(lat, data) {
     # Filtramos las filas donde la medición de la radiación esté ausente.
     not.null.solrad <- data[!is.na(data$Solrad),]
