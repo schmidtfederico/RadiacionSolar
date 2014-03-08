@@ -6,6 +6,7 @@ source("plot/Resultados.R")
 resultados.laboulaye <- estimar.radiacion(lat=-34.13, laboulaye)
 plotear.resultados(resultados.laboulaye, nombre.estacion="Laboulaye")
 
+
 ###################################### Estación Pergamino ######################################
 resultados.pergamino <- estimar.radiacion(lat=-33.93, pergamino)
 plotear.resultados(resultados.pergamino, nombre.estacion="Pergamino")
