@@ -30,11 +30,13 @@ plotear.con.ajuste <- function(x, y, xlab, ylab, bg, titulo) {
     abline(fit, lwd=1.5, col="firebrick1")
     
     legend("topleft", inset=.01, box.lwd=0, c("1:1","Ajuste"), lty=1, lwd=2, col=c("black" ,"firebrick1"), cex=0.9)
-    legend("bottomright", inset=0.01, x.intersp=0.5, box.lwd=0, horiz=TRUE, lwd=0, col="white", c(
-                paste("MAE = ", mean.absolute.error(x, y)),
-                paste("RMSE = ", root.mean.square.error(x, y)),
-                paste("MAD = ", mean.absolute.deviation(x, y))
-           ), cex=0.9)
+    
+    # MAE, RMSE y MAD.
+    pos <- par("usr")
+    text(pos[2]-4, pos[3]+1, paste("MAE = ", mean.absolute.error(x, y)), cex=0.9)
+    text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", root.mean.square.error(x, y)), cex=0.9)
+    text(pos[2]-4, pos[3]+4, paste("MAD = ", mean.absolute.deviation(x, y)), cex=0.9)               
+           
     
     # Residuales
     plot(x=x, y=fit$residuals, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab=xlab, ylab="Residuales", bg=bg)
