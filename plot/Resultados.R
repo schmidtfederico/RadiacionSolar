@@ -1,30 +1,38 @@
-#source("plot/QQPlot.R")
 
 plotear.resultados <- function(resultados, nombre.estacion) {
     
     titulo.plot <- paste("Estación", nombre.estacion, sep=" ")
+    
     # Bristow-Campbell
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$bc, ylab="Radiación Estimada Por Bristow-Campbell",
+    error.bc <- calcular.errores(resultados$bc, resultados$data)
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$bc, errores=error.bc,
+                       ylab="Radiación Estimada Por Bristow-Campbell",
                        titulo=titulo.plot, bg="lavender")
     
     # Hargreaves
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ha, ylab="Radiación Estimada Por Hargreaves",
+    error.ha <- calcular.errores(resultados$ha, resultados$data)
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ha, errores=error.ha,
+                       ylab="Radiación Estimada Por Hargreaves",
                        titulo=titulo.plot, bg="darkseagreen1")
     
     # Mahmoood-Hubbard
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$mh, ylab="Radiación Estimada Por Mahmood-Hubbard",
+    error.mh <- calcular.errores(resultados$mh, resultados$data)
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$mh, errores=error.mh,
+                       ylab="Radiación Estimada Por Mahmood-Hubbard",
                        titulo=titulo.plot, bg="skyblue")
     
     # Angstrom-Prescott
     # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
     # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
     resultados <- resultados[!is.na(resultados$ap),]
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$mh, ylab="Radiación Estimada Por Angstrom-Prescott",
+    error.ap <- calcular.errores(resultados$ap, resultados$data)
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ap, errores=error.ap,
+                       ylab="Radiación Estimada Por Angstrom-Prescott",
                        titulo=titulo.plot, bg="bisque")
 }
 
 
-plotear.con.ajuste <- function(data, prediccion, ylab, bg, titulo) {
+plotear.con.ajuste <- function(data, prediccion, errores, ylab, bg, titulo) {
     # Ploteamos la nube de puntos con los datos en el eje 'x' y los valores de la predicción
     # en el eje 'y'.
     plot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Medida", ylab=ylab)
@@ -41,9 +49,9 @@ plotear.con.ajuste <- function(data, prediccion, ylab, bg, titulo) {
     # Obtenemos los límites del gráfico.
     pos <- par("usr")
     # En la esquina inferior derecha escribimos los valores calculados.
-    text(pos[2]-4, pos[3]+1, paste("MAE = ", mean.absolute.error(prediccion, data)), cex=0.9)
-    text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", root.mean.square.error(prediccion, data)), cex=0.9)
-    text(pos[2]-4, pos[3]+4, paste("MAD = ", median.absolute.deviation(prediccion, data)), cex=0.9)               
+    text(pos[2]-4, pos[3]+1, paste("MAE = ", errores["mae"]), cex=0.9)
+    text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", errores["rmse"]), cex=0.9)
+    text(pos[2]-4, pos[3]+4, paste("MAD = ", errores["mad"]), cex=0.9)               
     
     # Residuales
     # Ploteamos la nube de residuales del ajuste.
@@ -59,6 +67,14 @@ plotear.con.ajuste <- function(data, prediccion, ylab, bg, titulo) {
     
     # Elimino el objeto fit porque suele ocupar mucho espacio en memoria.
     rm(fit)
+}
+
+calcular.errores <- function(prediccion, data) {
+    errores <- c(median.absolute.deviation(prediccion, data),
+                 mean.absolute.error(prediccion, data),
+                 root.mean.square.error(prediccion, data))
+    names(errores) <- c("mad", "mae", "rmse")
+    return(errores)
 }
 
 mean.absolute.error <- function(prediccion, valor) {
