@@ -1,3 +1,4 @@
+#source("plot/QQPlot.R")
 
 plotear.resultados <- function(resultados, nombre.estacion) {
     
@@ -51,6 +52,10 @@ plotear.con.ajuste <- function(data, prediccion, ylab, bg, titulo) {
     # si el método subestima o sobrestima en la mayoría de los casos y en qué valores
     # tiene a tener más o menos error.
     abline(0,0, lwd=1.5)
+    
+    # Ploteamos el gráfico de comparación de cuantiles.
+    qqplot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=paste(titulo, "QQPlot"), xlab="Radiación Medida", ylab=ylab)
+    abline(0, 1, lwd=1.5)
     
     # Elimino el objeto fit porque suele ocupar mucho espacio en memoria.
     rm(fit)
