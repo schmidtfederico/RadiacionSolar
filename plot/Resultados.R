@@ -24,9 +24,9 @@ plotear.resultados <- function(resultados, nombre.estacion) {
 
 
 plotear.con.ajuste <- function(x, y, xlab, ylab, bg, titulo) {
-    plot(x=x, y=y, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab=xlab, ylab="Radiación Medida")
+    plot(x=y, y=x, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab=xlab, ylab="Radiación Medida")
     abline(0,1, lwd=1.5)
-    fit <- lm(y ~ x, na.action=na.exclude)
+    fit <- lm(x ~ y, na.action=na.exclude)
     abline(fit, lwd=1.5, col="firebrick1")
     
     legend("topleft", inset=.01, box.lwd=0, c("1:1","Ajuste"), lty=1, lwd=2, col=c("black" ,"firebrick1"), cex=0.9)
@@ -35,7 +35,7 @@ plotear.con.ajuste <- function(x, y, xlab, ylab, bg, titulo) {
     pos <- par("usr")
     text(pos[2]-4, pos[3]+1, paste("MAE = ", mean.absolute.error(x, y)), cex=0.9)
     text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", root.mean.square.error(x, y)), cex=0.9)
-    text(pos[2]-4, pos[3]+4, paste("MAD = ", mean.absolute.deviation(x, y)), cex=0.9)               
+    text(pos[2]-4, pos[3]+4, paste("MAD = ", median.absolute.deviation(x, y)), cex=0.9)               
            
     
     # Residuales
@@ -53,7 +53,7 @@ root.mean.square.error <- function(prediccion, valor) {
     return(round(sqrt(mean((valor-prediccion)^2)), 2))
 }
 
-mean.absolute.deviation <- function(prediccion, valor) {
+median.absolute.deviation <- function(prediccion, valor) {
     m <- median(valor)
     return(round(median(abs(prediccion-m)), 2))
 }
