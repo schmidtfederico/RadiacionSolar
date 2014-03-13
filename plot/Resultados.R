@@ -1,23 +1,20 @@
 
-plotear.resultados <- function(resultados, nombre.estacion) {
+plotear.resultados <- function(resultados, nombre.estacion, errores) {
     
     titulo.plot <- paste("Estación", nombre.estacion, sep=" ")
     
     # Bristow-Campbell
-    error.bc <- calcular.errores(resultados$bc, resultados$data)
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$bc, errores=error.bc,
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$bc, error=errores$bc,
                        ylab="Radiación Estimada Por Bristow-Campbell",
                        titulo=titulo.plot, bg="lavender")
     
     # Hargreaves
-    error.ha <- calcular.errores(resultados$ha, resultados$data)
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ha, errores=error.ha,
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ha, error=errores$ha,
                        ylab="Radiación Estimada Por Hargreaves",
                        titulo=titulo.plot, bg="darkseagreen1")
     
     # Mahmoood-Hubbard
-    error.mh <- calcular.errores(resultados$mh, resultados$data)
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$mh, errores=error.mh,
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$mh, error=errores$mh,
                        ylab="Radiación Estimada Por Mahmood-Hubbard",
                        titulo=titulo.plot, bg="skyblue")
     
@@ -25,14 +22,13 @@ plotear.resultados <- function(resultados, nombre.estacion) {
     # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
     # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
     resultados <- resultados[!is.na(resultados$ap),]
-    error.ap <- calcular.errores(resultados$ap, resultados$data)
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ap, errores=error.ap,
+    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ap, error=errores$ap,
                        ylab="Radiación Estimada Por Angstrom-Prescott",
                        titulo=titulo.plot, bg="bisque")
 }
 
 
-plotear.con.ajuste <- function(data, prediccion, errores, ylab, bg, titulo) {
+plotear.con.ajuste <- function(data, prediccion, error, ylab, bg, titulo) {
     # Ploteamos la nube de puntos con los datos en el eje 'x' y los valores de la predicción
     # en el eje 'y'.
     plot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Medida", ylab=ylab)
@@ -49,9 +45,9 @@ plotear.con.ajuste <- function(data, prediccion, errores, ylab, bg, titulo) {
     # Obtenemos los límites del gráfico.
     pos <- par("usr")
     # En la esquina inferior derecha escribimos los valores calculados.
-    text(pos[2]-4, pos[3]+1, paste("MAE = ", errores["mae"]), cex=0.9)
-    text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", errores["rmse"]), cex=0.9)
-    text(pos[2]-4, pos[3]+4, paste("MAD = ", errores["mad"]), cex=0.9)               
+    text(pos[2]-4, pos[3]+1, paste("MAE = ", error[2]), cex=0.9)
+    text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", error[3]), cex=0.9)
+    text(pos[2]-4, pos[3]+4, paste("MAD = ", error[1]), cex=0.9)               
     
     # Residuales
     # Ploteamos la nube de residuales del ajuste.
@@ -69,7 +65,22 @@ plotear.con.ajuste <- function(data, prediccion, errores, ylab, bg, titulo) {
     rm(fit)
 }
 
-calcular.errores <- function(prediccion, data) {
+
+calcular.errores <- function(resultados) {
+    error.bc <- calcular.error(resultados$bc, resultados$data)
+    error.ha <- calcular.error(resultados$ha, resultados$data)
+    error.mh <- calcular.error(resultados$mh, resultados$data)
+    # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
+    # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
+    resultados <- resultados[!is.na(resultados$ap),]
+    error.ap <- calcular.error(resultados$ap, resultados$data)
+    
+    errores <- data.frame(error.bc, error.ha, error.mh, error.ap)
+    colnames(errores) <- c("bc", "ha", "mh", "ap")
+    return(errores)
+}
+
+calcular.error <- function(prediccion, data) {
     errores <- c(median.absolute.deviation(prediccion, data),
                  mean.absolute.error(prediccion, data),
                  root.mean.square.error(prediccion, data))
