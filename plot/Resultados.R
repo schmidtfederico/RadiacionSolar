@@ -1,41 +1,88 @@
+# Abreviaturas de los métodos de predicción.
+abreviaturas <- c("bc", "ha", "mh", "ap")
 
-plotear.resultados <- function(resultados, nombre.estacion, errores) {
-    
-    titulo.plot <- paste("Estación", nombre.estacion, sep=" ")
-    
+# Nombres completos de los métodos.
+nombre.metodo <- c("Bristow-Campbell", "Hargreaves", "Mahmood-Hubbard", "Ångström-Prescott")
+names(nombre.metodo) <- abreviaturas
+
+# Colores de ploteo de cada método de predicción.
+color.ploteo.metodo <- c("lavender", "darkseagreen1", "skyblue", "bisque")
+names(color.ploteo.metodo) <- abreviaturas
+
+
+plotear.resultados.todos <- function(resultados, errores) {
     # Bristow-Campbell
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$bc, error=errores$bc,
-                       ylab="Radiación Estimada Por Bristow-Campbell",
-                       titulo=titulo.plot, bg="lavender")
+    plotear.resultados(resultados, errores, metodo='bc')
     
     # Hargreaves
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ha, error=errores$ha,
-                       ylab="Radiación Estimada Por Hargreaves",
-                       titulo=titulo.plot, bg="darkseagreen1")
+    plotear.resultados(resultados, errores, metodo='ha')
     
     # Mahmoood-Hubbard
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$mh, error=errores$mh,
-                       ylab="Radiación Estimada Por Mahmood-Hubbard",
-                       titulo=titulo.plot, bg="skyblue")
+    plotear.resultados(resultados, errores, metodo='mh')
     
     # Angstrom-Prescott
-    # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
-    # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
-    resultados <- resultados[!is.na(resultados$ap),]
-    plotear.con.ajuste(data=resultados$data, prediccion=resultados$ap, error=errores$ap,
-                       ylab="Radiación Estimada Por Angstrom-Prescott",
-                       titulo=titulo.plot, bg="bisque")
+    plotear.resultados(resultados, errores, metodo='ap')
 }
 
 
-plotear.con.ajuste <- function(data, prediccion, error, ylab, bg, titulo) {
-    # Ploteamos la nube de puntos con los datos en el eje 'x' y los valores de la predicción
-    # en el eje 'y'.
-    plot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Medida", ylab=ylab)
-    # Ploteamos una línea x=y que sería el resultado ideal de cada método de predicción.
-    abline(0,1, lwd=1.5)
+plotear.resultados <- function(resultados, errores, plots='a', metodo) {
+    if(metodo == 'ap') {
+        # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
+        # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
+        resultados <- resultados[!is.na(resultados$ap),]
+    }
+    
+    data <- resultados$data
+    # Extraemos del data frame la predicción para el método especificado y los errores
+    # cometidos por el mismo.
+    prediccion <- resultados[, metodo]
+    error <- errores[, metodo]
+    
+    ylabel <- paste("Radiación Estimada Por", nombre.metodo[[metodo]])
+    bgcolor <- color.ploteo.metodo[[metodo]]
+    
+    if(plots == 'a') {
+        plotear.todos(data, prediccion, error, ylab=ylabel, bg=bgcolor)
+    }
+    if(plots == 'c') {
+        plotear.nube(data, prediccion, error, ylab=ylabel, bg=bgcolor)
+    }
+    if(plots == 'r') {
+        plotear.residuales(data, prediccion, error, ylab=ylabel, bg=bgcolor)
+    }
+    if(plots == 'q') {
+        plotear.qq(data, prediccion, error, ylab=ylabel, bg=bgcolor)
+    }
+}
+
+
+plotear.todos <- function(data, prediccion, error, ylab, bg, titulo=NA) {
     # Ajustamos los valores de la nube a una recta y la ploteamos.
     fit <- lm(prediccion ~ data, na.action=na.exclude)
+    
+    plotear.nube(data, prediccion, error, ylab, bg, titulo, fit)
+    
+    plotear.residuales(data, prediccion, error, ylab, bg, titulo, fit)
+    
+    plotear.qq(data, prediccion, error, ylab, bg, titulo)
+    
+    # Elimino el objeto fit porque suele ocupar mucho espacio en memoria.
+    rm(fit)
+}
+
+# Plotea la nubre de comparación entre valor observado y valor calculado.
+# Además, plotea una recta teórica de igualdad donde el valor observado y el predicho
+# coinciden siempre y una recta de ajuste de la nube.
+plotear.nube <- function(data, prediccion, error, ylab, bg, titulo=NA, fit=NA) {
+    # Ploteamos la nube de puntos con los datos en el eje 'x' y los valores de la predicción
+    # en el eje 'y'.
+    plot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Observada", ylab=ylab)
+    # Ploteamos una línea x=y que sería el resultado ideal de cada método de predicción.
+    abline(0,1, lwd=1.5)
+    
+    if(length(fit) == 0 || is.na(fit)) {
+        fit <- lm(prediccion ~ data, na.action=na.exclude)
+    }
     abline(fit, lwd=1.5, col="firebrick1")
     
     # Ploteamos en el gráfico un cuadro con los colores de las líneas y su significado.
@@ -47,7 +94,14 @@ plotear.con.ajuste <- function(data, prediccion, error, ylab, bg, titulo) {
     # En la esquina inferior derecha escribimos los valores calculados.
     text(pos[2]-4, pos[3]+1, paste("MAE = ", error[2]), cex=0.9)
     text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", error[3]), cex=0.9)
-    text(pos[2]-4, pos[3]+4, paste("MAD = ", error[1]), cex=0.9)               
+    text(pos[2]-4, pos[3]+4, paste("MAD = ", error[1]), cex=0.9)
+}
+
+# Plotea los residuales del ajuste de la nube de los valores observados vs predichos.
+plotear.residuales <- function(data, prediccion, error, ylab, bg, titulo=NA, fit=NA) {
+    if(length(fit) == 0 || is.na(fit)) {
+        fit <- lm(prediccion ~ data, na.action=na.exclude)
+    }
     
     # Residuales
     # Ploteamos la nube de residuales del ajuste.
@@ -56,15 +110,17 @@ plotear.con.ajuste <- function(data, prediccion, error, ylab, bg, titulo) {
     # si el método subestima o sobrestima en la mayoría de los casos y en qué valores
     # tiene a tener más o menos error.
     abline(0,0, lwd=1.5)
-    
-    # Ploteamos el gráfico de comparación de cuantiles.
-    qqplot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=paste(titulo, "QQPlot"), xlab="Radiación Medida", ylab=ylab)
-    abline(0, 1, lwd=1.5)
-    
-    # Elimino el objeto fit porque suele ocupar mucho espacio en memoria.
-    rm(fit)
 }
 
+# Plotea el gráfico de comparación de cuantiles de los valores observados y los valores
+# predichos.
+plotear.qq <- function(data, prediccion, error, ylab, bg, titulo=NA){
+    if(!is.na(titulo)){
+        titulo <- paste(titulo, "QQPlot")
+    }
+    qqplot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Observada", ylab=ylab)
+    abline(0, 1, lwd=1.5)
+}
 
 calcular.errores <- function(resultados) {
     error.bc <- calcular.error(resultados$bc, resultados$data)
