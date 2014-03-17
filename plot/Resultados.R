@@ -74,6 +74,8 @@ plotear.todos <- function(data, prediccion, error, ylab, bg, titulo=NA) {
 # Además, plotea una recta teórica de igualdad donde el valor observado y el predicho
 # coinciden siempre y una recta de ajuste de la nube.
 plotear.nube <- function(data, prediccion, error, ylab, bg, titulo=NA, fit=NA) {
+    # Configuramos los márgenes c(bottom, left, top, right)
+    par(mar=c(4,4,1,1))
     # Ploteamos la nube de puntos con los datos en el eje 'x' y los valores de la predicción
     # en el eje 'y'.
     plot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Observada", ylab=ylab)
@@ -102,6 +104,8 @@ plotear.residuales <- function(data, prediccion, error, ylab, bg, titulo=NA, fit
     if(length(fit) == 0 || is.na(fit)) {
         fit <- lm(prediccion ~ data, na.action=na.exclude)
     }
+    # Configuramos los márgenes c(bottom, left, top, right)
+    par(mar=c(4,4,1,1))
     
     # Residuales
     # Ploteamos la nube de residuales del ajuste.
@@ -118,6 +122,9 @@ plotear.qq <- function(data, prediccion, error, ylab, bg, titulo=NA){
     if(!is.na(titulo)){
         titulo <- paste(titulo, "QQPlot")
     }
+    # Configuramos los márgenes c(bottom, left, top, right)
+    par(mar=c(4,4,1,1))
+    
     qqplot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Observada", ylab=ylab)
     abline(0, 1, lwd=1.5)
 }
