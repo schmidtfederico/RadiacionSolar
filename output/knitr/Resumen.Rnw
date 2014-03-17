@@ -1,15 +1,17 @@
 %% LyX 2.0.7 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[a4paper,spanish,11pt,twocolumn]{article}
+\documentclass[spanish,11pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=1cm,bmargin=1cm,lmargin=1cm,rmargin=1cm,headheight=0cm,headsep=0cm,footskip=0cm}
+\usepackage{float}
 \usepackage{textcomp}
 
 \makeatletter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
-\special{papersize=\the\paperwidth,\the\paperheight}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{booktabs}
+\usepackage{colortbl, xcolor}
 
 \makeatother
 
@@ -42,11 +44,339 @@ en base a la información disponible de cada estación meteorológica.
 Para esta estación se cuenta con \Sexpr{nrow(laboulaye[!is.na(laboulaye$Solrad),])}
 observaciones de radiación solar.
 
+Para la calibración de los métodos de estimación se utilizan la totalidad
+de los datos disponibles. En el caso del método de Ångström-Prescott,
+se cuenta con \Sexpr{nrow(laboulaye[!is.na(laboulaye$Sunabs),])}
+observaciones de heliofanía que se utilizan para calibrar el método.\newpage{}
 
-\section*{Plots}
 
-<<plot-laboulaye, cache=FALSE, echo=FALSE>>=
-plotear.resultados(resultados.laboulaye, nombre.estacion="Laboulaye", errores=error.laboulaye)
+\subsection{Bristow-Campbell}
+
+\begin{figure}[H]
+\begin{centering}
+<<laboulaye-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc', plot='c')
 @
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<laboulaye-bc-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc', plot='r')
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Hargreaves}
+
+\begin{figure}[H]
+\begin{centering}
+<<laboulaye-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ha', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<laboulaye-ha-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ha', plot='r')
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ha', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Mahmood-Hubbard}
+
+\begin{figure}[H]
+\begin{centering}
+<<laboulaye-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='mh', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<laboulaye-mh-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='mh', plot='r')
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='mh', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Ångström-Prescott}
+
+\begin{figure}[H]
+\begin{centering}
+<<laboulaye-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ap', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<laboulaye-ap-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ap', plot='r')
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ap', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Errores}
+
+\begin{flushleft}
+<<errores-laboulaye, cache=FALSE, echo=FALSE, results='asis'>>=
+library(xtable)
+rws <- seq(1, (nrow(error.laboulaye)), by = 2)
+col <- rep("\\rowcolor[gray]{0.95}", length(rws))
+print(xtable(error.laboulaye), booktabs = TRUE, add.to.row = list(pos = as.list(rws), command = col))
+@
+\par\end{flushleft}
+
+\newpage{}
+
+
+\section{Pergamino}
+
+Para esta estación se cuenta con \Sexpr{nrow(pergamino[!is.na(pergamino$Solrad),])}
+observaciones de radiación solar.
+
+Para la calibración de los métodos de estimación se utilizan la totalidad
+de los datos disponibles. En el caso del método de Ångström-Prescott,
+se cuenta con \Sexpr{nrow(pergamino[!is.na(pergamino$Sunabs),])}
+observaciones de heliofanía que se utilizan para calibrar el método.
+
+\newpage{}
+
+
+\subsection{Bristow-Campbell}
+
+\begin{figure}[H]
+\begin{centering}
+<<pergamino-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pergamino-bc-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc', plot='r')
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Hargreaves}
+
+\begin{figure}[H]
+\begin{centering}
+<<pergamino-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ha', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pergamino-ha-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ha', plot='r')
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ha', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Mahmood-Hubbard}
+
+\begin{figure}[H]
+\begin{centering}
+<<pergamino-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='mh', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pergamino-mh-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='mh', plot='r')
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='mh', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Ångström-Prescott}
+
+\begin{figure}[H]
+\begin{centering}
+<<pergamino-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ap', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pergamino-ap-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ap', plot='r')
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ap', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Errores}
+
+\begin{flushleft}
+<<pergamino-errores, cache=FALSE, echo=FALSE, results='asis'>>=
+library(xtable)
+rws <- seq(1, (nrow(error.pergamino)), by = 2)
+col <- rep("\\rowcolor[gray]{0.95}", length(rws))
+print(xtable(error.pergamino), booktabs = TRUE, add.to.row = list(pos = as.list(rws), command = col))
+@
+\par\end{flushleft}
+
+\newpage{}
+
+
+\section{Pilar}
+
+Para esta estación se cuenta con \Sexpr{nrow(pilar[!is.na(pilar$Solrad),])}
+observaciones de radiación solar.
+
+Para la calibración de los métodos de estimación se utilizan la totalidad
+de los datos disponibles. En el caso del método de Ångström-Prescott,
+se cuenta con \Sexpr{nrow(pilar[!is.na(pilar$Sunabs),])} observaciones
+de heliofanía que se utilizan para calibrar el método.
+
+\newpage{}
+
+
+\subsection{Bristow-Campbell}
+
+\begin{figure}[H]
+\begin{centering}
+<<pilar-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='bc', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pilar-bc-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='bc', plot='r')
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='bc', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Hargreaves}
+
+\begin{figure}[H]
+\begin{centering}
+<<pilar-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ha', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pilar-ha-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ha', plot='r')
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ha', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Mahmood-Hubbard}
+
+\begin{figure}[H]
+\begin{centering}
+<<pilar-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='mh', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pilar-mh-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='mh', plot='r')
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='mh', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Ångström-Prescott}
+
+\begin{figure}[H]
+\begin{centering}
+<<pilar-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9\\linewidth'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ap', plot='c')
+@
+\par\end{centering}
+
+\caption{Nube de Puntos}
+\end{figure}
+\begin{figure}[H]
+<<pilar-ap-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49\\linewidth', fig.show='hold'>>=
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ap', plot='r')
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ap', plot='q')
+@
+
+\caption{Residuales del Ajuste y QQPlot}
+\end{figure}
+
+
+
+\subsection{Errores}
+
+\begin{flushleft}
+<<pilar-errores, cache=FALSE, echo=FALSE, results='asis'>>=
+library(xtable)
+rws <- seq(1, (nrow(error.pilar)), by = 2)
+col <- rep("\\rowcolor[gray]{0.95}", length(rws))
+print(xtable(error.pilar), booktabs = TRUE, add.to.row = list(pos = as.list(rws), command = col))
+@
+\par\end{flushleft}
 
 \end{document}

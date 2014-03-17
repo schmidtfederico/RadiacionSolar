@@ -175,7 +175,7 @@ Bristow-Campbell
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -184,7 +184,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<laboulaye-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -226,7 +227,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -234,7 +235,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<laboulaye-bc-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -289,7 +291,7 @@ Hargreaves
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -298,7 +300,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<laboulaye-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -340,7 +343,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -348,7 +351,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<laboulaye-ha-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -403,7 +407,7 @@ Mahmood-Hubbard
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -412,7 +416,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<laboulaye-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -454,7 +459,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -462,7 +467,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<laboulaye-mh-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -517,7 +523,7 @@ Residuales del Ajuste y QQPlot
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -526,7 +532,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<laboulaye-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -568,7 +575,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -576,7 +583,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<laboulaye-ap-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -633,7 +641,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, results='asis'>>=
+<<errores-laboulaye, cache=FALSE, echo=FALSE, results='asis'>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -682,6 +690,49 @@ print(xtable(error.laboulaye), booktabs = TRUE, add.to.row = list(pos = as.list(
 Pergamino
 \end_layout
 
+\begin_layout Standard
+Para esta estación se cuenta con 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{nrow(pergamino[!is.na(pergamino$Solrad),])}
+\end_layout
+
+\end_inset
+
+ observaciones de radiación solar.
+\end_layout
+
+\begin_layout Standard
+Para la calibración de los métodos de estimación se utilizan la totalidad
+ de los datos disponibles.
+ En el caso del método de Ångström-Prescott, se cuenta con 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{nrow(pergamino[!is.na(pergamino$Sunabs),])}
+\end_layout
+
+\end_inset
+
+ observaciones de heliofanía que se utilizan para calibrar el método.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Bristow-Campbell
 \end_layout
@@ -691,7 +742,7 @@ Bristow-Campbell
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -700,7 +751,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pergamino-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -742,7 +794,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -750,7 +802,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pergamino-bc-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -805,7 +858,7 @@ Hargreaves
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -814,7 +867,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pergamino-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -856,7 +910,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -864,7 +918,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pergamino-ha-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -919,7 +974,7 @@ Mahmood-Hubbard
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -928,7 +983,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pergamino-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -970,7 +1026,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -978,7 +1034,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pergamino-mh-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -1033,7 +1090,7 @@ Residuales del Ajuste y QQPlot
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1042,7 +1099,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pergamino-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
 \backslash
 
 \backslash
@@ -1084,7 +1142,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1092,7 +1150,8 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pergamino-ap-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
 \backslash
 
 \backslash
@@ -1149,7 +1208,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, results='asis'>>=
+<<pergamino-errores, cache=FALSE, echo=FALSE, results='asis'>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1198,6 +1257,49 @@ print(xtable(error.pergamino), booktabs = TRUE, add.to.row = list(pos = as.list(
 Pilar
 \end_layout
 
+\begin_layout Standard
+Para esta estación se cuenta con 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{nrow(pilar[!is.na(pilar$Solrad),])}
+\end_layout
+
+\end_inset
+
+ observaciones de radiación solar.
+\end_layout
+
+\begin_layout Standard
+Para la calibración de los métodos de estimación se utilizan la totalidad
+ de los datos disponibles.
+ En el caso del método de Ångström-Prescott, se cuenta con 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{nrow(pilar[!is.na(pilar$Sunabs),])}
+\end_layout
+
+\end_inset
+
+ observaciones de heliofanía que se utilizan para calibrar el método.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Bristow-Campbell
 \end_layout
@@ -1216,7 +1318,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pilar-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
 \backslash
 
 \backslash
@@ -1265,7 +1367,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pilar-bc-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
 \backslash
 
 \backslash
@@ -1327,7 +1429,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pilar-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
 \backslash
 
 \backslash
@@ -1368,7 +1470,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1376,7 +1478,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pilar-ha-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
 \backslash
 
 \backslash
@@ -1429,7 +1531,7 @@ Mahmood-Hubbard
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1438,7 +1540,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pilar-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
 \backslash
 
 \backslash
@@ -1479,7 +1581,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1487,7 +1589,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pilar-mh-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
 \backslash
 
 \backslash
@@ -1540,7 +1642,7 @@ Residuales del Ajuste y QQPlot
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1549,7 +1651,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+<<pilar-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
 \backslash
 
 \backslash
@@ -1590,7 +1692,7 @@ Nube de Puntos
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1598,7 +1700,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+<<pilar-ap-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
 \backslash
 
 \backslash
@@ -1653,7 +1755,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<cache=FALSE, echo=FALSE, results='asis'>>=
+<<pilar-errores, cache=FALSE, echo=FALSE, results='asis'>>=
 \end_layout
 
 \begin_layout Plain Layout
