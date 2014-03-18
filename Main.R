@@ -1,7 +1,7 @@
 source("init/init.R")
 source("rad/Estimacion.R")
 source("plot/Resultados.R")
-
+source('plot/ExtraT.R')
 
 ###################################### Estación Laboulaye ######################################
 resultados.laboulaye <- estimar.radiacion(lat=-34.13, laboulaye)

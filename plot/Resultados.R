@@ -1,14 +1,4 @@
-# Abreviaturas de los métodos de predicción.
-abreviaturas <- c("bc", "ha", "mh", "ap")
-
-# Nombres completos de los métodos.
-nombre.metodo <- c("Bristow-Campbell", "Hargreaves", "Mahmood-Hubbard", "Ångström-Prescott")
-names(nombre.metodo) <- abreviaturas
-
-# Colores de ploteo de cada método de predicción.
-color.ploteo.metodo <- c("lavender", "darkseagreen1", "skyblue", "bisque")
-names(color.ploteo.metodo) <- abreviaturas
-
+source("plot/Commons.R")
 
 plotear.resultados.todos <- function(resultados, errores) {
     # Bristow-Campbell
@@ -38,7 +28,7 @@ plotear.resultados <- function(resultados, errores, plots='a', metodo) {
     prediccion <- resultados[, metodo]
     error <- errores[, metodo]
     
-    ylabel <- paste("Radiación Estimada Por", nombre.metodo[[metodo]])
+    ylabel <- paste("Radiación Estimada Por", nombre.metodo[[metodo]], '[MJ/m²]')
     bgcolor <- color.ploteo.metodo[[metodo]]
     
     if(plots == 'a') {
@@ -78,7 +68,7 @@ plotear.nube <- function(data, prediccion, error, ylab, bg, titulo=NA, fit=NA) {
     par(mar=c(4,4,1,1))
     # Ploteamos la nube de puntos con los datos en el eje 'x' y los valores de la predicción
     # en el eje 'y'.
-    plot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Observada", ylab=ylab)
+    plot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Diaria Observada [MJ/m²]", ylab=ylab)
     # Ploteamos una línea x=y que sería el resultado ideal de cada método de predicción.
     abline(0,1, lwd=1.5)
     

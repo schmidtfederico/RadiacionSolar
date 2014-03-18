@@ -135,7 +135,7 @@ status open
 
 
 \backslash
-Sexpr{nrow(laboulaye[!is.na(laboulaye$Solrad),])}
+Sexpr{nrow(resultados.laboulaye)}
 \end_layout
 
 \end_inset
@@ -154,12 +154,76 @@ status open
 
 
 \backslash
-Sexpr{nrow(laboulaye[!is.na(laboulaye$Sunabs),])}
+Sexpr{nrow(resultados.laboulaye[!is.na(resultados.laboulaye$ap),])}
 \end_layout
 
 \end_inset
 
  observaciones de heliofanía que se utilizan para calibrar el método.
+\end_layout
+
+\begin_layout LyX-Code
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<laboulaye-data-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6,
+ out.width='.98
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.13, resultados.laboulaye)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La línea superior indica la radiación solar en la atmósfera (
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+).
+ La línea punteada marca la radiación solar máxima teórica en la superficie
+ terrestre tomando una transmisividad a cielo despejado de 77%.
+ Los puntos indican las mediciones efectuadas por los sensores.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
 
@@ -699,7 +763,7 @@ status open
 
 
 \backslash
-Sexpr{nrow(pergamino[!is.na(pergamino$Solrad),])}
+Sexpr{nrow(resultados.pergamino)}
 \end_layout
 
 \end_inset
@@ -718,12 +782,72 @@ status open
 
 
 \backslash
-Sexpr{nrow(pergamino[!is.na(pergamino$Sunabs),])}
+Sexpr{nrow(resultados.pergamino[!is.na(resultados.pergamino$ap),])}
 \end_layout
 
 \end_inset
 
  observaciones de heliofanía que se utilizan para calibrar el método.
+\end_layout
+
+\begin_layout LyX-Code
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pergamino-data-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6,
+ out.width='.98
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-33.93, resultados.pergamino)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La línea superior indica la radiación solar en la atmósfera (
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+).
+ La línea punteada marca la radiación solar máxima teórica en la superficie
+ terrestre tomando una transmisividad a cielo despejado de 77%.
+ Los puntos indican las mediciones efectuadas por los sensores.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1266,7 +1390,7 @@ status open
 
 
 \backslash
-Sexpr{nrow(pilar[!is.na(pilar$Solrad),])}
+Sexpr{nrow(resultados.pilar)}
 \end_layout
 
 \end_inset
@@ -1285,12 +1409,72 @@ status open
 
 
 \backslash
-Sexpr{nrow(pilar[!is.na(pilar$Sunabs),])}
+Sexpr{nrow(resultados.pilar[!is.na(resultados.pilar$ap),])}
 \end_layout
 
 \end_inset
 
  observaciones de heliofanía que se utilizan para calibrar el método.
+\end_layout
+
+\begin_layout LyX-Code
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pilar-data-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6,
+ out.width='.98
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-31.67, resultados.pilar)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La línea superior indica la radiación solar en la atmósfera (
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+).
+ La línea punteada marca la radiación solar máxima teórica en la superficie
+ terrestre tomando una transmisividad a cielo despejado de 77%.
+ Los puntos indican las mediciones efectuadas por los sensores.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

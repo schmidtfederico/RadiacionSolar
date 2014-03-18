@@ -6,6 +6,15 @@ source("rad/EstimacionPorHeliofania.R")
 # |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |
 #  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 # calibra y estima la radiación por los distintos métodos.
+calibrar.metodos <- function(lat, data, offset=1, nrows=NA) {
+    if(is.na(nrows)) {
+        nrows <- length(data)
+    }
+    data <- data[offset:nrows]
+    
+    # TODO: terminar de implementar para poder probar de calibrar con una fracción de los datos.
+}
+
 estimar.radiacion <- function(lat, data) {
     # Filtramos los datos para eliminar de los mismos los registros donde la
     # medición de la radiación es nula ya que no nos sirven para calibrar
@@ -30,9 +39,9 @@ estimar.radiacion <- function(lat, data) {
     
     # Devolvemos un Data Frame donde el nombre del campo es la abreviación del nombre
     # del método y agregamos los valores medidos de la radiación como el campo 'data'.
-    resultados.data <- data.frame(rad.bc.data, rad.ha.data, rad.mh.data, rad.ap.data,
+    resultados.data <- data.frame(data$Date, rad.bc.data, rad.ha.data, rad.mh.data, rad.ap.data,
                                        data$Solrad)
-    colnames(resultados.data) = c("bc", "ha", "mh", "ap", "data")
+    colnames(resultados.data) = c("Date", "bc", "ha", "mh", "ap", "data")
     
     return(resultados.data)
 }
