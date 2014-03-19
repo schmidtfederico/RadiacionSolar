@@ -10,6 +10,7 @@ plot.extrat <- function(lat, resultados, metodo=NA) {
         bgcolor = color.ploteo.metodo[[metodo]]
         ylabel <- paste("Radiación Estimada Por", nombre.metodo[[metodo]], '[MJ/m²]')
     }
+    
     # Configuramos los márgenes c(bottom, left, top, right)
     par(mar=c(4,4,1,1))
     

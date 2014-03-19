@@ -80,13 +80,7 @@ plotear.nube <- function(data, prediccion, error, ylab, bg, titulo=NA, fit=NA) {
     # Ploteamos en el gráfico un cuadro con los colores de las líneas y su significado.
     legend("topleft", inset=.01, box.lwd=0, c("1:1","Ajuste"), lty=1, lwd=2, col=c("black" ,"firebrick1"), cex=0.9)
     
-    # MAE, RMSE y MAD.
-    # Obtenemos los límites del gráfico.
-    pos <- par("usr")
-    # En la esquina inferior derecha escribimos los valores calculados.
-    text(pos[2]-4, pos[3]+1, paste("MAE = ", error[2]), cex=0.9)
-    text(pos[2]-4, pos[3]+2.5, paste("RMSE = ", error[3]), cex=0.9)
-    text(pos[2]-4, pos[3]+4, paste("MAD = ", error[1]), cex=0.9)
+    plotear.errores(error)
 }
 
 # Plotea los residuales del ajuste de la nube de los valores observados vs predichos.
@@ -117,39 +111,4 @@ plotear.qq <- function(data, prediccion, error, ylab, bg, titulo=NA){
     
     qqplot(x=data, y=prediccion, bg=bg, pch=21, cex=0.5, lwd=0.5, main=titulo, xlab="Radiación Observada", ylab=ylab)
     abline(0, 1, lwd=1.5)
-}
-
-calcular.errores <- function(resultados) {
-    error.bc <- calcular.error(resultados$bc, resultados$data)
-    error.ha <- calcular.error(resultados$ha, resultados$data)
-    error.mh <- calcular.error(resultados$mh, resultados$data)
-    # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
-    # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
-    resultados <- resultados[!is.na(resultados$ap),]
-    error.ap <- calcular.error(resultados$ap, resultados$data)
-    
-    errores <- data.frame(error.bc, error.ha, error.mh, error.ap)
-    colnames(errores) <- c("bc", "ha", "mh", "ap")
-    return(errores)
-}
-
-calcular.error <- function(prediccion, data) {
-    errores <- c(median.absolute.deviation(prediccion, data),
-                 mean.absolute.error(prediccion, data),
-                 root.mean.square.error(prediccion, data))
-    names(errores) <- c("mad", "mae", "rmse")
-    return(errores)
-}
-
-mean.absolute.error <- function(prediccion, valor) {
-    return(round(mean(abs(prediccion-valor)), 2))
-}
-
-root.mean.square.error <- function(prediccion, valor) {
-    return(round(sqrt(mean((valor-prediccion)^2)), 2))
-}
-
-median.absolute.deviation <- function(prediccion, valor) {
-    m <- median(valor)
-    return(round(median(abs(prediccion-m)), 2))
 }

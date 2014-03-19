@@ -45,3 +45,20 @@ estimar.radiacion <- function(lat, data) {
     
     return(resultados.data)
 }
+
+ajustar.radiacion <- function(lat, resultados) {
+    extraT <- extrat(i=1:366, lat=radians(lat))$ExtraTerrestrialSolarRadiationDaily
+    
+    maxRad <- extraT[dayOfYear(resultados$Date)]*tal
+    
+    # Bristow-Campbell
+    resultados$bc <- mapply(min, resultados$bc, maxRad)
+    # Hargreaves
+    resultados$ha <- mapply(min, resultados$ha, maxRad)
+    # Mahmood-Hubbard
+    resultados$mh <- mapply(min, resultados$mh, maxRad)
+    # Angstrom-Prescott
+    resultados$ap <- mapply(min, resultados$ap, maxRad)
+    
+    return(resultados)
+}
