@@ -5,9 +5,9 @@ tal=0.77
 
 # Todas las funciones de estimacón terminadas en ".csv" toman como entrada un campo
 # data que debe ser un Data Frame con las cabeceras:
-#  ___________________________________________________________
-# |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |
-#  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+#  ___________________________________________________________________
+# |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |  Nub  |
+#  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 # Bristow-Campbell
 estimar.por.bc.csv <- function (lat, data, BCb=NULL) {
@@ -25,6 +25,11 @@ estimar.por.ha.csv <- function (lat, data, ha.cal) {
 # Mahmood-Hubbard
 estimar.por.mh.csv <- function(lat, data){
     return(mh(days=as.Date(data$Date), lat=lat, Tmax=data$Tmax, Tmin=data$Tmin))
+}
+
+# Supit-Van Kappel
+estimar.por.su.csv <- function(lat, data, su.cal) {
+    return(su(lat=lat, days=as.Date(data$Date), A=su.cal[[1]], B=su.cal[[2]], C=su.cal[[3]], tmax=data$Tmax, tmin=data$Tmin, CC=data$Nub))
 }
 
 # Las funciones a continuación toman como entrada un registro de la DB de Clima de la estación

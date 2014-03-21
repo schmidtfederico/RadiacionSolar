@@ -2,11 +2,11 @@ source("rad/EstimacionPorTemperaturas.R")
 source("rad/EstimacionPorHeliofania.R")
 
 # Dado una latitud y un archivo CSV con la estructura:
-#  ___________________________________________________________
-# |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |
-#  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+#  ___________________________________________________________________
+# |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |  Nub  |
+#  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 # calibra y estima la radiación por los distintos métodos.
-estimar.radiacion <- function(lat, data) {    
+estimar.radiacion <- function(lat, data, su=FALSE) {    
     # Calibramos y estimamos por cada método.
     # Bristow-Campbell
     BCb.data <- calibrar.bc.csv(lat=lat, data=data)
@@ -15,6 +15,10 @@ estimar.radiacion <- function(lat, data) {
     # Hargreaves
     ha.cal.data <- calibrar.ha.csv(lat=lat, data=data)
     rad.ha.data <- estimar.por.ha.csv(lat=lat, data=data, ha.cal=ha.cal.data)
+    
+    # Supit-Van Kappel
+    su.cal.data <- calibrar.su.csv(lat=lat, data=data)
+    rad.su.data <- estimar.por.su.csv(lat=lat, data=data, su.cal=su.cal.data)
     
     # Angstrom-Prescott
     ap.cal.data <- calibrar.ap.csv(lat=lat, data=data)
@@ -25,9 +29,9 @@ estimar.radiacion <- function(lat, data) {
     
     # Devolvemos un Data Frame donde el nombre del campo es la abreviación del nombre
     # del método y agregamos los valores medidos de la radiación como el campo 'data'.
-    resultados.data <- data.frame(data$Date, rad.bc.data, rad.ha.data, rad.mh.data, rad.ap.data,
+    resultados.data <- data.frame(data$Date, rad.bc.data, rad.ha.data, rad.mh.data, rad.su.data, rad.ap.data,
                                        data$Solrad)
-    colnames(resultados.data) = c("Date", "bc", "ha", "mh", "ap", "data")
+    colnames(resultados.data) = c("Date", "bc", "ha", "mh", "su", "ap", "data")
     
     return(resultados.data)
 }
@@ -43,6 +47,8 @@ ajustar.radiacion <- function(lat, resultados) {
     resultados$ha <- mapply(min, resultados$ha, maxRad)
     # Mahmood-Hubbard
     resultados$mh <- mapply(min, resultados$mh, maxRad)
+    # Supit-Van Kapel
+    resultados$su <- mapply(min, resultados$su, maxRad)
     # Angstrom-Prescott
     resultados$ap <- mapply(min, resultados$ap, maxRad)
     

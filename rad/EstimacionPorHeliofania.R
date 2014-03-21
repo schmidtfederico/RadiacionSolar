@@ -1,8 +1,8 @@
 # Todas las funciones de calibración terminadas en ".csv" toman como entrada un campo
 # data que debe ser un Data Frame con las cabeceras:
-#  ___________________________________________________________
-# |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |
-#  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+#  ___________________________________________________________________
+# |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |  Nub  |
+#  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 # Angstrom-Prescott
 estimar.por.ap.csv <- function(lat, data, ap.cal) {

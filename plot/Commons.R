@@ -1,14 +1,14 @@
 library(xtable)
 
 # Abreviaturas de los métodos de predicción.
-abreviaturas <- c("bc", "ha", "mh", "ap")
+abreviaturas <- c("bc", "ha", "mh", "ap", "su")
 
 # Nombres completos de los métodos.
-nombre.metodo <- c("Bristow-Campbell", "Hargreaves", "Mahmood-Hubbard", "Ångström-Prescott")
+nombre.metodo <- c("Bristow-Campbell", "Hargreaves", "Mahmood-Hubbard", "Ångström-Prescott", "Supit-Van Kappel")
 names(nombre.metodo) <- abreviaturas
 
 # Colores de ploteo de cada método de predicción.
-color.ploteo.metodo <- c("lavender", "darkseagreen1", "skyblue", "bisque")
+color.ploteo.metodo <- c("lavender", "darkseagreen1", "skyblue", "bisque", "cadetblue4")
 names(color.ploteo.metodo) <- abreviaturas
 
 plot.xtable <- function(data.frame) {
@@ -32,13 +32,16 @@ calcular.errores <- function(resultados) {
     error.bc <- calcular.error(resultados$bc, resultados$data)
     error.ha <- calcular.error(resultados$ha, resultados$data)
     error.mh <- calcular.error(resultados$mh, resultados$data)
+    
+    resultados.su <- resultados[!is.na(resultados$su),]
+    error.su <- calcular.error(resultados.su$su, resultados.su$data)
     # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
     # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
-    resultados <- resultados[!is.na(resultados$ap),]
-    error.ap <- calcular.error(resultados$ap, resultados$data)
+    resultados.ap <- resultados[!is.na(resultados$ap),]
+    error.ap <- calcular.error(resultados.ap$ap, resultados.ap$data)
     
-    errores <- data.frame(error.bc, error.ha, error.mh, error.ap)
-    colnames(errores) <- c("bc", "ha", "mh", "ap")
+    errores <- data.frame(error.bc, error.ha, error.mh, error.su, error.ap)
+    colnames(errores) <- c("bc", "ha", "mh", "su", "ap")
     return(errores)
 }
 
