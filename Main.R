@@ -1,7 +1,15 @@
 source("init/init.R")
+source('rad/ReadData.R')
 source("rad/Estimacion.R")
 source("plot/Resultados.R")
 source('plot/ExtraT.R')
+
+##################################### Estación Buenos Aires ####################################
+resultados.bsas <- estimar.radiacion(lat=-34.58, buenos.aires)
+error.bsas <- calcular.errores(resultados=resultados.bsas)
+
+resultados.bsas.ajustados <- ajustar.radiacion(lat=-34.58, resultados.bsas)
+error.bsas.ajustado <- calcular.errores(resultados.bsas.ajustados)
 
 ###################################### Estación Laboulaye ######################################
 resultados.laboulaye <- estimar.radiacion(lat=-34.13, laboulaye)

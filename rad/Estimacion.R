@@ -6,21 +6,7 @@ source("rad/EstimacionPorHeliofania.R")
 # |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |
 #  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 # calibra y estima la radiación por los distintos métodos.
-calibrar.metodos <- function(lat, data, offset=1, nrows=NA) {
-    if(is.na(nrows)) {
-        nrows <- length(data)
-    }
-    data <- data[offset:nrows]
-    
-    # TODO: terminar de implementar para poder probar de calibrar con una fracción de los datos.
-}
-
-estimar.radiacion <- function(lat, data) {
-    # Filtramos los datos para eliminar de los mismos los registros donde la
-    # medición de la radiación es nula ya que no nos sirven para calibrar
-    # ni para después comparar la performance del método de estimación.
-    data = data[!is.na(data$Solrad),]
-    
+estimar.radiacion <- function(lat, data) {    
     # Calibramos y estimamos por cada método.
     # Bristow-Campbell
     BCb.data <- calibrar.bc.csv(lat=lat, data=data)
