@@ -1,8 +1,5 @@
 source("rad/Calibracion.R")
 
-# Transmisividad atmosférica.
-tal=0.77
-
 # Todas las funciones de estimacón terminadas en ".csv" toman como entrada un campo
 # data que debe ser un Data Frame con las cabeceras:
 #  ___________________________________________________________________
@@ -10,10 +7,7 @@ tal=0.77
 #  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 # Bristow-Campbell
-estimar.por.bc.csv <- function (lat, data, BCb=NULL) {
-    if(is.null(BCb)){
-        BCb <- BCb.avg
-    }
+estimar.por.bc.csv <- function (lat, data, BCb) {
     return(bc(days=as.Date(data$Date), lat=lat, BCb=BCb, Tmax=data$Tmax, Tmin=data$Tmin, tal=tal))
 }
 

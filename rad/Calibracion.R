@@ -4,6 +4,9 @@
 # |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |  Nub  |
 #  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
+# Transmisividad atmosférica.
+tal=0.77
+
 # Bristow-Campbell
 calibrar.bc.csv <- function(lat, data) {
     return(bccal(lat=lat, days=as.Date(data$Date), rad_mea=data$Solrad, Tmax=data$Tmax, Tmin=data$Tmin, tal=tal))

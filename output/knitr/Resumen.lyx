@@ -92,6 +92,11 @@ setwd("../../")
 
 \begin_layout Plain Layout
 
+options(warn=-1)
+\end_layout
+
+\begin_layout Plain Layout
+
 source("Main.R")
 \end_layout
 
@@ -402,7 +407,7 @@ Nube de Puntos
 
 \end_inset
 
-
+gih
 \begin_inset Float figure
 placement H
 wide false
@@ -579,6 +584,122 @@ Residuales del Ajuste y QQPlot
 \end_layout
 
 \begin_layout Subsection
+Supit-Van Kappel
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<laboulaye-su-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8,
+ out.width='.9
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='su',
+ plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Nube de Puntos
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<laboulaye-su-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10,
+ out.width='.49
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='su',
+ plot='r')
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='su',
+ plot='q')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Residuales del Ajuste y QQPlot
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Ångström-Prescott
 \end_layout
 
@@ -710,27 +831,7 @@ status open
 
 \begin_layout Plain Layout
 
-library(xtable)
-\end_layout
-
-\begin_layout Plain Layout
-
-rws <- seq(1, (nrow(error.laboulaye)), by = 2)
-\end_layout
-
-\begin_layout Plain Layout
-
-col <- rep("
-\backslash
-
-\backslash
-rowcolor[gray]{0.95}", length(rws))
-\end_layout
-
-\begin_layout Plain Layout
-
-print(xtable(error.laboulaye), booktabs = TRUE, add.to.row = list(pos = as.list(rws)
-, command = col))
+plot.xtable(error.laboulaye)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1337,27 +1438,7 @@ status open
 
 \begin_layout Plain Layout
 
-library(xtable)
-\end_layout
-
-\begin_layout Plain Layout
-
-rws <- seq(1, (nrow(error.pergamino)), by = 2)
-\end_layout
-
-\begin_layout Plain Layout
-
-col <- rep("
-\backslash
-
-\backslash
-rowcolor[gray]{0.95}", length(rws))
-\end_layout
-
-\begin_layout Plain Layout
-
-print(xtable(error.pergamino), booktabs = TRUE, add.to.row = list(pos = as.list(rws)
-, command = col))
+plot.xtable(error.pergamino)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1818,6 +1899,117 @@ Residuales del Ajuste y QQPlot
 \end_layout
 
 \begin_layout Subsection
+Supit-Van Kappel
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pilar-su-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=8, out.width='.9
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='su', plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Nube de Puntos
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pilar-su-ryq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='su', plot='r')
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='su', plot='q')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Residuales del Ajuste y QQPlot
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Ångström-Prescott
 \end_layout
 
@@ -1944,27 +2136,7 @@ status open
 
 \begin_layout Plain Layout
 
-library(xtable)
-\end_layout
-
-\begin_layout Plain Layout
-
-rws <- seq(1, (nrow(error.pilar)), by = 2)
-\end_layout
-
-\begin_layout Plain Layout
-
-col <- rep("
-\backslash
-
-\backslash
-rowcolor[gray]{0.95}", length(rws))
-\end_layout
-
-\begin_layout Plain Layout
-
-print(xtable(error.pilar), booktabs = TRUE, add.to.row = list(pos = as.list(rws),
- command = col))
+plot.xtable(error.pilar)
 \end_layout
 
 \begin_layout Plain Layout
