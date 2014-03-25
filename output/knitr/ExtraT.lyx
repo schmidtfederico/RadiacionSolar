@@ -92,6 +92,11 @@ setwd("../../")
 
 \begin_layout Plain Layout
 
+options(warn=-1)
+\end_layout
+
+\begin_layout Plain Layout
+
 source("Main.R")
 \end_layout
 
@@ -382,6 +387,64 @@ linewidth', fig.show='hold'>>=
 \begin_layout Plain Layout
 
 plot.extrat(lat=-34.13, resultados.laboulaye, metodo='mh')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Puntos acotados por las curvas de radiación terrestre (línea punteada) y
+ extraterrestre.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Supit-Van Kappel
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<laboulaye-su-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6,
+ out.width='.98
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.13, resultados.laboulaye, metodo='su')
 \end_layout
 
 \begin_layout Plain Layout
@@ -1291,6 +1354,64 @@ Puntos acotados por las curvas de radiación terrestre (línea punteada) y
 \end_layout
 
 \begin_layout Subsection
+Supit-Van Kappel
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pilar-su-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6, out.width='.
+98
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-31.67, resultados.pilar, metodo='su')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Puntos acotados por las curvas de radiación terrestre (línea punteada) y
+ extraterrestre.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Ångström-Prescott
 \end_layout
 
@@ -1429,6 +1550,490 @@ status open
 \begin_layout Plain Layout
 
 plot.xtable(error.pilar.ajustado - error.pilar)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Buenos Aires
+\end_layout
+
+\begin_layout Standard
+Para esta estación se cuenta con 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{nrow(resultados.bsas)}
+\end_layout
+
+\end_inset
+
+ observaciones de radiación solar.
+\end_layout
+
+\begin_layout Standard
+Para la calibración de los métodos de estimación se utilizan la totalidad
+ de los datos disponibles.
+ En el caso del método de Ångström-Prescott, se cuenta con 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{nrow(resultados.bsas[!is.na(resultados.bsas$ap),])}
+\end_layout
+
+\end_inset
+
+ observaciones de heliofanía que se utilizan para calibrar el método.
+\end_layout
+
+\begin_layout LyX-Code
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-data-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6, out.width=
+'.98
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.58, resultados.bsas)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La línea superior indica la radiación solar en la atmósfera (
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+).
+ La línea punteada marca la radiación solar máxima teórica en la superficie
+ terrestre tomando una transmisividad a cielo despejado de 77%.
+ Los puntos indican las mediciones efectuadas por los sensores.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Bristow-Campbell
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-bc-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6, out.width='.9
+8
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.58, resultados.bsas, metodo='bc')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Puntos acotados por las curvas de radiación terrestre (línea punteada) y
+ extraterrestre.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Hargreaves
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-ha-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6, out.width='.9
+8
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.58, resultados.bsas, metodo='ha')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Puntos acotados por las curvas de radiación terrestre (línea punteada) y
+ extraterrestre.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Mahmood-Hubbard
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-mh-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6, out.width='.9
+8
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.58, resultados.bsas, metodo='mh')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Puntos acotados por las curvas de radiación terrestre (línea punteada) y
+ extraterrestre.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Supit-Van Kappel
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-su-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6, out.width='.9
+8
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.58, resultados.bsas, metodo='su')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Puntos acotados por las curvas de radiación terrestre (línea punteada) y
+ extraterrestre.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ångström-Prescott
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-ap-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6, out.width='.9
+8
+\backslash
+
+\backslash
+linewidth', fig.show='hold'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.extrat(lat=-34.58, resultados.bsas, metodo='ap')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Puntos acotados por las curvas de radiación terrestre (línea punteada) y
+ extraterrestre.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Errores
+\end_layout
+
+\begin_layout Standard
+Previo a la corrección de valores:
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<errores-bsas, cache=FALSE, echo=FALSE, results='asis'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.xtable(error.bsas)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Post corrección de los valores máximos que puede tomar la radiación solar
+ en dicho día (tomando el mínimo entre lo que da el método y la radiación
+ solar máxima a la altura del suelo):
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<errores-bsas-ajustado, cache=FALSE, echo=FALSE, results='asis'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.xtable(error.bsas.ajustado)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diferencia:
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<errores-bsas-diff, cache=FALSE, echo=FALSE, results='asis'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot.xtable(error.bsas.ajustado - error.bsas)
 \end_layout
 
 \begin_layout Plain Layout

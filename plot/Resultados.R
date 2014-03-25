@@ -21,6 +21,10 @@ plotear.resultados <- function(resultados, errores, plots='a', metodo) {
         # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
         resultados <- resultados[!is.na(resultados$ap),]
     }
+    if(metodo == 'su') {
+        # Se pueden tener menos mediciones de nubosidad que de radiación solar.
+        resultados <- resultados[!is.na(resultados$su),]
+    }
     
     data <- resultados$data
     # Extraemos del data frame la predicción para el método especificado y los errores
