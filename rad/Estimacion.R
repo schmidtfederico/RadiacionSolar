@@ -6,22 +6,30 @@ source("rad/EstimacionPorHeliofania.R")
 # |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |  Nub  |
 #  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 # calibra y estima la radiación por los distintos métodos.
-estimar.radiacion <- function(lat, data, su=FALSE) {    
-    # Calibramos y estimamos por cada método.
+estimar.radiacion <- function(lat, data, cal=NA) {
+    if(length(cal) < 8) {
+        # Calibramos y estimamos por cada método.
+        BCb.data <- calibrar.bc.csv(lat=lat, data=data)
+        ha.cal.data <- calibrar.ha.csv(lat=lat, data=data)
+        su.cal.data <- calibrar.su.csv(lat=lat, data=data, nrows=90)
+        ap.cal.data <- calibrar.ap.csv(lat=lat, data=data, nrows=90)
+    } else {
+        BCb.data <- cal['BCb']
+        ha.cal.data <- c(cal['Ha'], cal['Hb'])
+        su.cal.data <- c(cal['Sa'], cal['Sb'], cal['Sc'])
+        ap.cal.data <- c(cal['APa'], cal['APb'])
+    }
+    
     # Bristow-Campbell
-    BCb.data <- calibrar.bc.csv(lat=lat, data=data)
     rad.bc.data <- estimar.por.bc.csv(lat=lat, data=data, BCb=BCb.data)
     
     # Hargreaves
-    ha.cal.data <- calibrar.ha.csv(lat=lat, data=data)
     rad.ha.data <- estimar.por.ha.csv(lat=lat, data=data, ha.cal=ha.cal.data)
     
     # Supit-Van Kappel
-    su.cal.data <- calibrar.su.csv(lat=lat, data=data)
     rad.su.data <- estimar.por.su.csv(lat=lat, data=data, su.cal=su.cal.data)
     
     # Angstrom-Prescott
-    ap.cal.data <- calibrar.ap.csv(lat=lat, data=data)
     rad.ap.data <- estimar.por.ap.csv(lat=lat, data=data, ap.cal=ap.cal.data)
     
     # Mahmood-Hubbard

@@ -23,6 +23,10 @@ estimar.por.mh.csv <- function(lat, data){
 
 # Supit-Van Kappel
 estimar.por.su.csv <- function(lat, data, su.cal) {
+    data.not.na <- data[!is.na(data$Nub),]
+    if(nrow(data.not.na) == 0) {
+        return(NA)
+    }
     return(su(lat=lat, days=as.Date(data$Date), A=su.cal[[1]], B=su.cal[[2]], C=su.cal[[3]], tmax=data$Tmax, tmin=data$Tmin, CC=data$Nub))
 }
 
