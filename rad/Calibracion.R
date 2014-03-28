@@ -27,6 +27,15 @@ calibrar.todos.csv <- function(lat, data, offset=0, nrows=NA) {
     return(cal)
 }
 
+calibrar.todos.random.csv <- function(lat, data, perc=0.5) {
+    # Muestreamos las observaciones para obtener una porcentaje de
+    # todos los datos disponibles.
+    row.numbers <- sample(x=1:nrow(data), size=(nrow(data)*perc), replace=FALSE)
+    cal.data <- data[row.numbers,]
+    
+    return(calibrar.todos.csv(lat=lat, data=cal.data))
+}
+
 # Bristow-Campbell
 calibrar.bc.csv <- function(lat, data, offset=0, nrows=NA) {
     data <- data.subset(data, offset, nrows)

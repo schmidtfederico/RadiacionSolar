@@ -11,10 +11,17 @@ names(nombre.metodo) <- abreviaturas
 color.ploteo.metodo <- c("lavender", "darkseagreen1", "skyblue", "bisque", "cadetblue4")
 names(color.ploteo.metodo) <- abreviaturas
 
-plot.xtable <- function(data.frame) {
+plot.xtable <- function(data.frame, digits=2, ...) {
     rws <- seq(1, (nrow(data.frame) - 1), by = 2)
     col <- rep("\\rowcolor[gray]{0.95}", length(rws))
-    print(xtable(data.frame), booktabs = TRUE, add.to.row = list(pos = as.list(rws), command = col))
+    align <- rep(x='c', times=ncol(data.frame)+1)
+    print(xtable(data.frame, align=align, digits=digits), booktabs = TRUE, add.to.row = list(pos = as.list(rws), command = col), ...)
+}
+
+plot.calibracion <- function(cal.data, ...) {
+    df <- data.frame(cal.data)
+    colnames(df) <- c('Valor')
+    plot.xtable(df, digits=5, hline.after=(c(-1, 0, 1, 3, 6, 8)), ...)
 }
 
 ## Funciones de Ploteo y Cálculo de errores.

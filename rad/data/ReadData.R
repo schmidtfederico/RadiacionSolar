@@ -7,6 +7,14 @@ read.not.na <- function(file, field='Solrad', ...) {
     return(data)
 }
 
+filtrar.mediciones <- function(lat, data) {
+    extraT <- extrat(i=1:366, lat=radians(lat))$ExtraTerrestrialSolarRadiationDaily
+    maxRad <- extraT[dayOfYear(data$Date)]*tal
+    
+    data <- data[data$Solrad <= maxRad,]
+    return(data)
+}
+
 # Se leen los archivos CSV de cada estación.
 pergamino = read.not.na("rad/data/RadPergamino.csv")
 pilar = read.not.na("rad/data/RadPilar.csv")
