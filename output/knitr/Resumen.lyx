@@ -510,7 +510,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc',
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='mh',
  plot='c')
 \end_layout
 
@@ -605,7 +605,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc',
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='su',
  plot='c')
 \end_layout
 
@@ -700,7 +700,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc',
+plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ap',
  plot='c')
 \end_layout
 
@@ -1329,7 +1329,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc',
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='mh',
  plot='c')
 \end_layout
 
@@ -1424,7 +1424,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc',
+plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ap',
  plot='c')
 \end_layout
 
@@ -2046,7 +2046,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.pilar, errores=error.pilar, metodo='bc', plot='c')
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='mh', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2138,7 +2138,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.pilar, errores=error.pilar, metodo='bc', plot='c')
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='su', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2230,7 +2230,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.pilar, errores=error.pilar, metodo='bc', plot='c')
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ap', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2851,7 +2851,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.bsas, errores=error.bsas, metodo='bc', plot='c')
+plotear.resultados(resultados.bsas, errores=error.bsas, metodo='mh', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2943,7 +2943,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.bsas, errores=error.bsas, metodo='bc', plot='c')
+plotear.resultados(resultados.bsas, errores=error.bsas, metodo='su', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
@@ -3035,7 +3035,7 @@ linewidth'>>=
 
 \begin_layout Plain Layout
 
-plotear.resultados(resultados.bsas, errores=error.bsas, metodo='bc', plot='c')
+plotear.resultados(resultados.bsas, errores=error.bsas, metodo='ap', plot='c')
 \end_layout
 
 \begin_layout Plain Layout

@@ -11,7 +11,7 @@ pergamino <- filtrar.mediciones(lat=-33.93, pergamino)
 pilar <- filtrar.mediciones(lat=-31.67, pilar)
 buenos.aires <- filtrar.mediciones(lat=-34.58, buenos.aires)
 
-porcentaje.calibracion <- 0.2
+porcentaje.calibracion <- 0.1
 
 ###################################### Estación Laboulaye ######################################
 calibracion.laboulaye <- calibrar.todos.random.csv(lat=-34.13, laboulaye, perc=porcentaje.calibracion)
