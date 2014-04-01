@@ -268,7 +268,7 @@ status open
 
 \begin_layout Plain Layout
 
-plot.calibracion(calibracion.laboulaye)
+plot.calibracion.mensual(calibracion.laboulaye)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1087,7 +1087,7 @@ status open
 
 \begin_layout Plain Layout
 
-plot.calibracion(calibracion.pergamino)
+plot.calibracion.mensual(calibracion.pergamino)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1811,7 +1811,7 @@ status open
 
 \begin_layout Plain Layout
 
-plot.calibracion(calibracion.pilar)
+plot.calibracion.mensual(calibracion.pilar)
 \end_layout
 
 \begin_layout Plain Layout
@@ -2616,7 +2616,7 @@ status open
 
 \begin_layout Plain Layout
 
-plot.calibracion(calibracion.bsas)
+plot.calibracion.mensual(calibracion.bsas)
 \end_layout
 
 \begin_layout Plain Layout

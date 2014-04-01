@@ -24,6 +24,12 @@ plot.calibracion <- function(cal.data, ...) {
     plot.xtable(df, digits=5, hline.after=(c(-1, 0, 1, 3, 6, 8)), ...)
 }
 
+plot.calibracion.mensual <- function(cal.data, ...) {
+    df <- data.frame(cal.data)
+    colnames(df) <- 1:12
+    plot.xtable(df, digits=3, hline.after=(c(-1, 0, 1, 3, 6, 8)), ...)
+}
+
 ## Funciones de Ploteo y Cálculo de errores.
 plotear.errores <- function(error) {
     # MAE, RMSE y MAD.

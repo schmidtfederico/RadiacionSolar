@@ -6,6 +6,23 @@ source("rad/EstimacionPorHeliofania.R")
 # |  Date  |  Tmax  |  Tmin  |  Precip  |  Sunabs  |  Solrad  |  Nub  |
 #  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 # calibra y estima la radiación por los distintos métodos.
+
+estimar.por.mes <- function(lat, data, cal) {
+    resultados.data <- data.frame()
+    #colnames(resultados.data) = c("Date", "bc", "ha", "mh", "su", "ap", "data")
+    
+    for(mes in 1:12) {
+        cal.mes <- cal[,mes]
+        names(cal.mes) <- rownames(cal)
+        data.mes <- data[as.numeric(strftime(data$Date, "%m")) == mes,]
+        
+        resultados <- estimar.radiacion(lat=lat, data=data.mes, cal=cal.mes)
+        resultados.data <- rbind(resultados.data, resultados)
+    }
+    return(resultados.data)
+}
+
+
 estimar.radiacion <- function(lat, data, cal=NA) {
     if(length(cal) < 8) {
         # Calibramos y estimamos por cada método.

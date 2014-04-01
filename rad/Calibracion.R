@@ -13,6 +13,22 @@ suppressWarnings(su)
 # Transmisividad atmosférica.
 tal=0.77
 
+calibrar.por.mes.csv <- function(lat, data) {
+    calibracion <- data.frame(row.names=c('BCb', 'Ha', 'Hb', 'Sa', 'Sb', 'Sc', 'APa', 'APb'))
+    for(mes in 1:12) {
+        data.mes <- data[as.numeric(strftime(data$Date, "%m")) == mes,]
+        if(nrow(data.mes) > 26) {
+            calibracion.mes <- calibrar.todos.random.csv(lat=lat, data=data.mes, perc=1)
+        } else if(nrow(data.mes) > 10) {
+            calibracion.mes <- calibrar.todos.random.csv(lat=lat, data=data.mes, perc=1)
+        } else {
+            calibracion.mes <- calibrar.todos.random.csv(lat=lat, data=data.mes, perc=1)
+        }
+        calibracion[, as.character(mes)] <- calibracion.mes
+    }
+    return(calibracion)
+}
+
 # Calibra todos los métodos y devuelve un vector con los parámetros de cálculo
 # de cada método.
 calibrar.todos.csv <- function(lat, data, offset=0, nrows=NA) {

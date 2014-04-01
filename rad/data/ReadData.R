@@ -4,6 +4,7 @@
 read.not.na <- function(file, field='Solrad', ...) {
     data <- read.csv(file, ...)
     data <- data[!is.na(data[,field]),]
+    data$Date <- as.Date(data$Date)
     return(data)
 }
 
