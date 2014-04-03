@@ -237,20 +237,13 @@ Calibración
 \end_layout
 
 \begin_layout Standard
-La calibración se realiza muestreando un 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Sexpr{porcentaje.calibracion*100}
+La calibración se realiza por mes muestreando el 50% de los datos disponibles
+ y se estima sobre el otro 50% de los datos.
 \end_layout
 
-\end_inset
-
-% de los datos disponibles al azar.
+\begin_layout Standard
+De los datos usados para calibrar, se muestrea nuevamente el 50% de los
+ datos de cada mes.
 \end_layout
 
 \begin_layout Standard
@@ -1056,20 +1049,8 @@ Calibración
 \end_layout
 
 \begin_layout Standard
-La calibración se realiza muestreando un 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Sexpr{porcentaje.calibracion*100}
-\end_layout
-
-\end_inset
-
-% de los datos disponibles al azar.
+La calibración se realiza por mes muestreando el 50% de los datos disponibles
+ para cada mes.
 \end_layout
 
 \begin_layout Standard
@@ -1780,20 +1761,8 @@ Calibración
 \end_layout
 
 \begin_layout Standard
-La calibración se realiza muestreando un 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Sexpr{porcentaje.calibracion*100}
-\end_layout
-
-\end_inset
-
-% de los datos disponibles al azar.
+La calibración se realiza por mes muestreando el 50% de los datos disponibles
+ para cada mes.
 \end_layout
 
 \begin_layout Standard
@@ -2585,20 +2554,13 @@ Calibración
 \end_layout
 
 \begin_layout Standard
-La calibración se realiza muestreando un 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Sexpr{porcentaje.calibracion*100}
+La calibración se realiza por mes muestreando el 50% de los datos disponibles
+ y se estima sobre el otro 50% de los datos.
 \end_layout
 
-\end_inset
-
-% de los datos disponibles al azar.
+\begin_layout Standard
+De los datos usados para calibrar, se muestrea nuevamente el 50% de los
+ datos de cada mes.
 \end_layout
 
 \begin_layout Standard

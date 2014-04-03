@@ -11,11 +11,13 @@ pergamino <- filtrar.mediciones(lat=-33.93, pergamino)
 pilar <- filtrar.mediciones(lat=-31.67, pilar)
 buenos.aires <- filtrar.mediciones(lat=-34.58, buenos.aires)
 
-porcentaje.calibracion <- 0.1
-
 ###################################### Estación Laboulaye ######################################
-calibracion.laboulaye <- calibrar.por.mes.csv(lat=-34.13, laboulaye)
-resultados.laboulaye <- estimar.por.mes(lat=-34.13, laboulaye, cal=calibracion.laboulaye)
+laboulaye.subset1 <- laboulaye[sample(x=1:nrow(laboulaye), size=(nrow(laboulaye)*0.5), replace=FALSE),]
+laboulaye.subset1 <- laboulaye.subset1[order(laboulaye.subset1$Date),]
+laboulaye.subset2 <- laboulaye[!laboulaye$Date %in% laboulaye.subset1$Date,]
+
+calibracion.laboulaye <- calibrar.por.mes.csv(lat=-34.13, laboulaye.subset1)
+resultados.laboulaye <- estimar.por.mes(lat=-34.13, laboulaye.subset2, cal=calibracion.laboulaye)
 error.laboulaye <- calcular.errores(resultados=resultados.laboulaye)
 
 resultados.laboulaye.ajustados <- ajustar.radiacion(lat=-34.13, resultados.laboulaye)
@@ -38,8 +40,12 @@ resultados.pilar.ajustados <- ajustar.radiacion(lat=-31.67, resultados.pilar)
 error.pilar.ajustado <- calcular.errores(resultados=resultados.pilar.ajustados)
 
 ##################################### Estación Buenos Aires ####################################
-calibracion.bsas <- calibrar.por.mes.csv(lat=-34.58, buenos.aires)
-resultados.bsas <- estimar.por.mes(lat=-34.58, buenos.aires, cal=calibracion.bsas)
+bsas.subset1 <- buenos.aires[sample(x=1:nrow(buenos.aires), size=(nrow(buenos.aires)*0.5), replace=FALSE),]
+bsas.subset1 <- bsas.subset1[order(bsas.subset1$Date),]
+bsas.subset2 <- buenos.aires[!buenos.aires$Date %in% bsas.subset1$Date,]
+
+calibracion.bsas <- calibrar.por.mes.csv(lat=-34.58, bsas.subset1)
+resultados.bsas <- estimar.por.mes(lat=-34.58, bsas.subset2, cal=calibracion.bsas)
 error.bsas <- calcular.errores(resultados=resultados.bsas)
 
 resultados.bsas.ajustados <- ajustar.radiacion(lat=-34.58, resultados.bsas)
