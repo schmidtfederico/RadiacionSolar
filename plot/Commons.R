@@ -1,5 +1,3 @@
-library(xtable)
-
 # Abreviaturas de los métodos de predicción.
 abreviaturas <- c("bc", "ha", "mh", "ap", "su")
 

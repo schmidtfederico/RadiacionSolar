@@ -84,7 +84,9 @@ plotear.nube <- function(data, prediccion, error, ylab, bg, titulo=NA, fit=NA) {
     # Ploteamos en el gráfico un cuadro con los colores de las líneas y su significado.
     legend("topleft", inset=.01, box.lwd=0, c("1:1","Ajuste"), lty=1, lwd=2, col=c("black" ,"firebrick1"), cex=0.9)
     
-    plotear.errores(error)
+    if(!is.na(error)) {
+        plotear.errores(error)
+    }
 }
 
 # Plotea los residuales del ajuste de la nube de los valores observados vs predichos.

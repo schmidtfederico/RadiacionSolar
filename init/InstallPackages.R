@@ -16,3 +16,4 @@ if(!require('ncdf')) { install.packages('ncdf'); require('ncdf') }
 # Requiere la instalacion de 'libudunits2-dev' en el sistema host.
 if(!require('RNetCDF')) { install.packages('RNetCDF'); require('RNetCDF') }
 if(!require('sirad')) { install.packages('sirad'); require('sirad') }
+if(!require('xtable')) { install.packages('xtable'); library('xtable') } 
