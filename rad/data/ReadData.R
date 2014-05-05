@@ -17,7 +17,6 @@ filtrar.mediciones <- function(lat, data) {
 }
 
 # Se leen los archivos CSV de cada estación.
-pergamino = read.not.na("rad/data/RadPergamino.csv")
-pilar = read.not.na("rad/data/RadPilar.csv")
-laboulaye = read.not.na("rad/data/RadLaboulaye.csv")
-buenos.aires = read.not.na("rad/data/RadBsAs.csv")
+pilar = read.not.na("rad/data/Pilar.csv")
+buenos.aires = read.not.na("rad/data/BsAs.csv")
+buenos.aires <- buenos.aires[buenos.aires$Date < '2014-01-01',]
