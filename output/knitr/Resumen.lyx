@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass article
@@ -21,13 +21,13 @@ knitr
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -39,15 +39,24 @@ knitr
 \use_hyperref false
 \papersize a4paper
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Index
 \shortcut idx
@@ -151,1531 +160,6 @@ Estaciones
 \end_layout
 
 \begin_layout Section
-Laboulaye
-\end_layout
-
-\begin_layout Standard
-Para esta estación se cuenta con 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Sexpr{nrow(resultados.laboulaye)}
-\end_layout
-
-\end_inset
-
- observaciones de radiación solar.
-\end_layout
-
-\begin_layout LyX-Code
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-data-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6,
- out.width='.98
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.laboulaye)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption
-
-\begin_layout Plain Layout
-La línea superior indica la radiación solar en la atmósfera (
-\begin_inset Formula $Q_{0}$
-\end_inset
-
-).
- La línea punteada marca la radiación solar máxima teórica en la superficie
- terrestre tomando una transmisividad a cielo despejado de 77%.
- Los puntos indican las mediciones efectuadas por los sensores.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Calibración
-\end_layout
-
-\begin_layout Standard
-La calibración se realiza por mes muestreando el 50% de los datos disponibles
- y se estima sobre el otro 50% de los datos.
-\end_layout
-
-\begin_layout Standard
-De los datos usados para calibrar, se muestrea nuevamente el 50% de los
- datos de cada mes.
-\end_layout
-
-\begin_layout Standard
-Los valores obtenidos para los distintos métodos son:
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<calibracion-laboulaye, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.calibracion.mensual(calibracion.laboulaye)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Plots
-\end_layout
-
-\begin_layout Subsubsection
-Bristow-Campbell
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-bc-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.laboulaye, metodo='bc')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Hargreaves
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ha',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-ha-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.laboulaye, metodo='ha')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ha',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Mahmood-Hubbard
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='mh',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-mh-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.laboulaye, metodo='mh')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='mh',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Supit-Van Kappel
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-su-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='su',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-su-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.laboulaye, metodo='su')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='su',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Ångström-Prescott
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ap',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-ap-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.laboulaye, metodo='ap')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ap',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Errores
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="49line%">
-<column alignment="center" valignment="top" width="49line%">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49text%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<errores-laboulaye, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.laboulaye, floating=FALSE)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Previo a la corrección de valores.
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<errores-laboulaye-ajustado, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.laboulaye.ajustado, floating=FALSE)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Post corrección de los valores máximos.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-Diferencia:
-\end_layout
-
-\begin_layout Standard
-\align left
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<errores-laboulaye-diff, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.laboulaye.ajustado - error.laboulaye)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Pergamino
-\end_layout
-
-\begin_layout Standard
-Para esta estación se cuenta con 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Sexpr{nrow(resultados.pergamino)}
-\end_layout
-
-\end_inset
-
- observaciones de radiación solar.
-\end_layout
-
-\begin_layout LyX-Code
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-data-extrat, cache=FALSE, echo=FALSE, fig.width=10, fig.height=6,
- out.width='.98
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-33.93, resultados.pergamino)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-La línea superior indica la radiación solar en la atmósfera (
-\begin_inset Formula $Q_{0}$
-\end_inset
-
-).
- La línea punteada marca la radiación solar máxima teórica en la superficie
- terrestre tomando una transmisividad a cielo despejado de 77%.
- Los puntos indican las mediciones efectuadas por los sensores.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Calibración
-\end_layout
-
-\begin_layout Standard
-La calibración se realiza por mes muestreando el 50% de los datos disponibles
- para cada mes.
-\end_layout
-
-\begin_layout Standard
-Los valores obtenidos para los distintos métodos son:
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<calibracion-pergamino, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.calibracion.mensual(calibracion.pergamino)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Plots
-\end_layout
-
-\begin_layout Subsubsection
-Bristow-Campbell
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-bc-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-bc-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.pergamino, metodo='bc')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Hargreaves
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-ha-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ha',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-ha-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.pergamino, metodo='ha')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ha',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Mahmood-Hubbard
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-mh-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='mh',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-mh-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.pergamino, metodo='mh')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='mh',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Ångström-Prescott
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-ap-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
- out.width='.8
-\backslash
-
-\backslash
-linewidth'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ap',
- plot='c')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Nube de Puntos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-ap-extrat, cache=FALSE, echo=FALSE, fig.pos='H', fig.cap='', fig.subcap
-=c('Puntos Acotados por la curva de radiación terrestre (línea punteada).',
- 'Residuales del Ajuste'), fig.width=10, fig.height=8, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.extrat(lat=-34.13, resultados.pergamino, metodo='ap')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ap',
- plot='r')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Errores
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="49line%">
-<column alignment="center" valignment="top" width="49line%">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49text%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<errores-pergamino, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.pergamino, floating=FALSE)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Previo a la corrección de valores.
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<errores-pergamino-ajustado, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.pergamino.ajustado, floating=FALSE)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Post corrección de los valores máximos.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-Diferencia:
-\end_layout
-
-\begin_layout Standard
-\align left
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<errores-pergamino-diff, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.pergamino.ajustado - error.pergamino)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
 Pilar
 \end_layout
 
@@ -1733,7 +217,7 @@ plot.extrat(lat=-31.67, resultados.pilar)
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 La línea superior indica la radiación solar en la atmósfera (
@@ -1761,8 +245,20 @@ Calibración
 \end_layout
 
 \begin_layout Standard
-La calibración se realiza por mes muestreando el 50% de los datos disponibles
- para cada mes.
+La calibración se realiza por mes muestreando el 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{(porcentaje.calibracion*100)}
+\end_layout
+
+\end_inset
+
+% de los datos disponibles.
 \end_layout
 
 \begin_layout Standard
@@ -1845,7 +341,7 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='bc', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -1937,7 +433,7 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ha', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -2029,7 +525,7 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='mh', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -2121,7 +617,7 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='su', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -2213,7 +709,7 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ap', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -2278,7 +774,7 @@ Errores
 \begin_layout Standard
 \begin_inset Tabular
 <lyxtabular version="3" rows="1" columns="2">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="49line%">
 <column alignment="center" valignment="top" width="49line%">
 <row>
@@ -2526,7 +1022,7 @@ plot.extrat(lat=-34.58, resultados.bsas)
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 La línea superior indica la radiación solar en la atmósfera (
@@ -2643,7 +1139,7 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='bc', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -2735,7 +1231,7 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='ha', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -2827,7 +1323,7 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='mh', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -2919,7 +1415,7 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='su', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -3011,7 +1507,7 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='ap', plot='c')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Nube de Puntos
@@ -3076,7 +1572,7 @@ Errores
 \begin_layout Standard
 \begin_inset Tabular
 <lyxtabular version="3" rows="1" columns="2">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="49line%">
 <column alignment="center" valignment="top" width="49line%">
 <row>
@@ -3269,208 +1765,6 @@ plot.xtable(error.bsas.ajustado - error.bsas)
 Anexo: QQPlots
 \end_layout
 
-\begin_layout Section*
-Laboulaye
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-qq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='bc',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ha',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='mh',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='su',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-QQPlots para Bristow-Campbell, Hargreaves, Mahmood-Hubbard y Supit-Van Kappel.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<laboulaye-qq-ap, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width=
-'.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.laboulaye, errores=error.laboulaye, metodo='ap',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-QQPlot para Ångström-Prescott
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section*
-Pergamino
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<pergamino-qq, cache=FALSE, echo=FALSE, fig.width=10, fig.height=10, out.width='.49
-\backslash
-
-\backslash
-linewidth', fig.show='hold'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='bc',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ha',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='mh',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-plotear.resultados(resultados.pergamino, errores=error.pergamino, metodo='ap',
- plot='q')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-QQPlots para Bristow-Campbell, Hargreaves, Mahmood-Hubbard y Ångström-Prescott.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection*
 Pilar
 \end_layout
@@ -3525,7 +1819,7 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='su', plot='q')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 QQPlots para Bristow-Campbell, Hargreaves, Mahmood-Hubbard y Supit-Van Kappel.
@@ -3577,7 +1871,7 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ap', plot='q')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 QQPlot para Ångström-Prescott
@@ -3647,7 +1941,7 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='su', plot='q')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 QQPlots para Bristow-Campbell, Hargreaves, Mahmood-Hubbard y Supit-Van Kappel.
@@ -3699,7 +1993,7 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='ap', plot='q')
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 QQPlot para Ångström-Prescott

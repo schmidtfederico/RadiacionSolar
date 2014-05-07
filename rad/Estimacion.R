@@ -16,6 +16,8 @@ estimar.por.mes <- function(lat, data, cal) {
         names(cal.mes) <- rownames(cal)
         data.mes <- data[as.numeric(strftime(data$Date, "%m")) == mes,]
         
+        if(nrow(data.mes) == 0) next;
+        
         resultados <- estimar.radiacion(lat=lat, data=data.mes, cal=cal.mes)
         resultados.data <- rbind(resultados.data, resultados)
     }
@@ -52,11 +54,15 @@ estimar.radiacion <- function(lat, data, cal=NA) {
     # Mahmood-Hubbard
     rad.mh.data <- estimar.por.mh.csv(lat=lat, data=data)
     
+    # Random Forests
+    rad.rfA.data <- predict(rfA, data)
+    rad.rfB.data <- predict(rfB, data)
+    
     # Devolvemos un Data Frame donde el nombre del campo es la abreviación del nombre
     # del método y agregamos los valores medidos de la radiación como el campo 'data'.
-    resultados.data <- data.frame(data$Date, rad.bc.data, rad.ha.data, rad.mh.data, rad.su.data, rad.ap.data,
-                                       data$Solrad)
-    colnames(resultados.data) = c("Date", "bc", "ha", "mh", "su", "ap", "data")
+    
+    resultados.data <- data.frame(Date=data$Date, bc=rad.bc.data, ha=rad.ha.data, mh=rad.mh.data, su=rad.su.data,
+                                  ap=rad.ap.data, rfA=rad.rfA.data, rfB=rad.rfB.data, data=data$Solrad)
     
     return(resultados.data)
 }

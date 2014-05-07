@@ -13,7 +13,13 @@ filtrar.mediciones <- function(lat, data) {
     maxRad <- extraT[dayOfYear(data$Date)]*tal
     
     data <- data[data$Solrad <= maxRad,]
-    return(data)
+    return(cbind(data, ExtraT=extraT[dayOfYear(data$Date)], Mes=as.numeric(format(data$Date, "%m"))))
+}
+
+muestrear <- function(data, perc=0.7) {
+    sample <- data[sample(x=1:nrow(data), size=(nrow(data)*perc), replace=FALSE),]
+    sample <- sample[order(sample$Date),]
+    return(sample)
 }
 
 # Se leen los archivos CSV de cada estación.

@@ -8,6 +8,9 @@ source("rad/Calibracion.R")
 
 # Bristow-Campbell
 estimar.por.bc.csv <- function (lat, data, BCb) {
+    if(nrow(data) == 1) {
+        return(c(NA))
+    }
     return(bc(days=as.Date(data$Date), lat=lat, BCb=BCb, Tmax=data$Tmax, Tmin=data$Tmin, tal=tal))
 }
 

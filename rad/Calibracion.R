@@ -11,7 +11,7 @@ suppressWarnings(sucal)
 suppressWarnings(su)
 
 # Transmisividad atmosférica.
-tal=0.77
+tal=0.8
 
 calibrar.por.mes.csv <- function(lat, data) {
     calibracion <- data.frame(row.names=c('BCb', 'Ha', 'Hb', 'Sa', 'Sb', 'Sc', 'APa', 'APb'))

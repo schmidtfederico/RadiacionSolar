@@ -40,9 +40,14 @@ plotear.errores <- function(error) {
 }
 
 calcular.errores <- function(resultados) {
-    error.bc <- calcular.error(resultados$bc, resultados$data)
-    error.ha <- calcular.error(resultados$ha, resultados$data)
-    error.mh <- calcular.error(resultados$mh, resultados$data)
+    resultados.bc <- resultados[!is.na(resultados$bc),]
+    error.bc <- calcular.error(resultados.bc$bc, resultados.bc$data)
+    
+    resultados.ha <- resultados[!is.na(resultados$ha),]
+    error.ha <- calcular.error(resultados.ha$ha, resultados.ha$data)
+    
+    resultados.mh <- resultados[!is.na(resultados$mh),]
+    error.mh <- calcular.error(resultados.mh$mh, resultados.mh$data)
     
     resultados.su <- resultados[!is.na(resultados$su),]
     error.su <- calcular.error(resultados.su$su, resultados.su$data)
@@ -51,8 +56,14 @@ calcular.errores <- function(resultados) {
     resultados.ap <- resultados[!is.na(resultados$ap),]
     error.ap <- calcular.error(resultados.ap$ap, resultados.ap$data)
     
-    errores <- data.frame(error.bc, error.ha, error.mh, error.su, error.ap)
-    colnames(errores) <- c("bc", "ha", "mh", "su", "ap")
+    resultados.rfA <- resultados[!is.na(resultados$rfA),]
+    error.rfA <- calcular.error(resultados.rfA$rfA, resultados.rfA$data)
+    
+    resultados.rfB <- resultados[!is.na(resultados$rfB),]
+    error.rfB <- calcular.error(resultados.rfB$rfB, resultados.rfB$data)
+    
+    errores <- data.frame(error.bc, error.ha, error.mh, error.su, error.ap, error.rfA, error.rfB)
+    colnames(errores) <- c("bc", "ha", "mh", "su", "ap", "rfA", "rfB")
     return(errores)
 }
 
