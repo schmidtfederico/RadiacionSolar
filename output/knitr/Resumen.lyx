@@ -760,6 +760,173 @@ plotear.resultados(resultados.pilar, errores=error.pilar, metodo='ap', plot='r')
 
 \end_layout
 
+\begin_layout Subsubsection
+Random Forests
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pilar-rfall-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9, out.width=
+'.7
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='rfAll', plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nube de puntos para el RF que toma todas las variables como entrada.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pilar-rfhelio-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
+ out.width='.7
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='rfHelio',
+ plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nube de puntos para el RF que toma la heliofanía y la radiación extraterrestre
+ como entradas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<pilar-rfprcp-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
+ out.width='.7
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.pilar, errores=error.pilar, metodo='rfPrcp',
+ plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nube de puntos para el RF que toma Tmax, Tmin, precipitaciones y la radiación
+ extraterrestre como entradas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Errores
 \end_layout
@@ -772,28 +939,9 @@ Errores
 \end_layout
 
 \begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="49line%">
-<column alignment="center" valignment="top" width="49line%">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49text%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_inset Float table
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -836,33 +984,27 @@ plot.xtable(error.pilar, floating=FALSE)
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Errores post corrección de valores máximos.
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-Previo a la corrección de valores.
+\end_inset
+
+
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49col%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -887,68 +1029,34 @@ status open
 
 \begin_layout Plain Layout
 
-<<errores-pilar-ajustado, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.pilar.ajustado, floating=FALSE)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Post corrección de los valores máximos.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-Diferencia:
-\end_layout
-
-\begin_layout Standard
-\align left
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
 <<errores-pilar-diff, cache=FALSE, echo=FALSE, results='asis'>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-plot.xtable(error.pilar.ajustado - error.pilar)
+plot.xtable(error.pilar.ajustado - error.pilar, floating=FALSE)
 \end_layout
 
 \begin_layout Plain Layout
 
 @
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diferencia de errores ocasionada por la corrección.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1558,6 +1666,171 @@ plotear.resultados(resultados.bsas, errores=error.bsas, metodo='ap', plot='r')
 
 \end_layout
 
+\begin_layout Subsubsection
+Random Forests
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-rfall-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9, out.width='.
+7
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.bsas, errores=error.bsas, metodo='rfAll', plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nube de puntos para el RF que toma todas las variables como entrada.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-rfhelio-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9,
+ out.width='.7
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.bsas, errores=error.bsas, metodo='rfHelio', plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nube de puntos para el RF que toma la heliofanía y la radiación extraterrestre
+ como entradas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bsas-rfprcp-nube, cache=FALSE, echo=FALSE, fig.width=10, fig.height=9, out.width=
+'.7
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plotear.resultados(resultados.bsas, errores=error.bsas, metodo='rfPrcp', plot='c')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nube de puntos para el RF que toma Tmax, Tmin, precipitaciones y la radiación
+ extraterrestre como entradas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Errores
 \end_layout
@@ -1570,28 +1843,9 @@ Errores
 \end_layout
 
 \begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="49line%">
-<column alignment="center" valignment="top" width="49line%">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49text%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_inset Float table
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -1621,7 +1875,7 @@ status open
 
 \begin_layout Plain Layout
 
-plot.xtable(error.bsas, floating=FALSE)
+plot.xtable(error.bsas.ajustado, floating=FALSE)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1634,33 +1888,27 @@ plot.xtable(error.bsas, floating=FALSE)
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Errores post corrección de valores.
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-Previo a la corrección de valores.
+\end_inset
+
+
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\align left
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "49col%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -1685,68 +1933,34 @@ status open
 
 \begin_layout Plain Layout
 
-<<errores-bsas-ajustado, cache=FALSE, echo=FALSE, results='asis'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-plot.xtable(error.bsas.ajustado, floating=FALSE)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Post corrección de los valores máximos.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-Diferencia:
-\end_layout
-
-\begin_layout Standard
-\align left
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
 <<errores-bsas-diff, cache=FALSE, echo=FALSE, results='asis'>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-plot.xtable(error.bsas.ajustado - error.bsas)
+plot.xtable(error.bsas.ajustado - error.bsas, floating=FALSE)
 \end_layout
 
 \begin_layout Plain Layout
 
 @
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diferencia de errores ocasionada por la corrección.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset

@@ -1,12 +1,15 @@
 # Abreviaturas de los métodos de predicción.
-abreviaturas <- c("bc", "ha", "mh", "ap", "su")
+abreviaturas <- c("bc", "ha", "mh", "ap", "su", "rfAll", "rfHelio", "rfPrcp")
 
 # Nombres completos de los métodos.
-nombre.metodo <- c("Bristow-Campbell", "Hargreaves", "Mahmood-Hubbard", "Ångström-Prescott", "Supit-Van Kappel")
+nombre.metodo <- c("Bristow-Campbell", "Hargreaves", "Mahmood-Hubbard", "Ångström-Prescott",
+                   "Supit-Van Kappel", "Random Forest 'All'", "Random Forest Heliofanía",
+                   "Random Forest Tmax+Tmin+Prcp")
 names(nombre.metodo) <- abreviaturas
 
 # Colores de ploteo de cada método de predicción.
-color.ploteo.metodo <- c("lavender", "darkseagreen1", "skyblue", "bisque", "cadetblue4")
+color.ploteo.metodo <- c("lavender", "darkseagreen1", "skyblue", "bisque", "cadetblue4", "brown1",
+                         "chartreuse4", "darkgoldenrod1")
 names(color.ploteo.metodo) <- abreviaturas
 
 plot.xtable <- function(data.frame, digits=2, ...) {
@@ -56,14 +59,18 @@ calcular.errores <- function(resultados) {
     resultados.ap <- resultados[!is.na(resultados$ap),]
     error.ap <- calcular.error(resultados.ap$ap, resultados.ap$data)
     
-    resultados.rfA <- resultados[!is.na(resultados$rfA),]
-    error.rfA <- calcular.error(resultados.rfA$rfA, resultados.rfA$data)
+    resultados.rfAll <- resultados[!is.na(resultados$rfAll),]
+    error.rfAll <- calcular.error(resultados.rfAll$rfAll, resultados.rfAll$data)
     
-    resultados.rfB <- resultados[!is.na(resultados$rfB),]
-    error.rfB <- calcular.error(resultados.rfB$rfB, resultados.rfB$data)
+    resultados.rfHelio <- resultados[!is.na(resultados$rfHelio),]
+    error.rfHelio <- calcular.error(resultados.rfHelio$rfHelio, resultados.rfHelio$data)
     
-    errores <- data.frame(error.bc, error.ha, error.mh, error.su, error.ap, error.rfA, error.rfB)
-    colnames(errores) <- c("bc", "ha", "mh", "su", "ap", "rfA", "rfB")
+    resultados.rfPrcp <- resultados[!is.na(resultados$rfPrcp),]
+    error.rfPrcp <- calcular.error(resultados.rfPrcp$rfPrcp, resultados.rfPrcp$data)
+    
+    errores <- data.frame(error.bc, error.ha, error.mh, error.su, error.ap,
+                          error.rfAll, error.rfHelio, error.rfPrcp)
+    colnames(errores) <- c("bc", "ha", "mh", "su", "ap", "rfAll", "rfHelio", "rfPrcp")
     return(errores)
 }
 

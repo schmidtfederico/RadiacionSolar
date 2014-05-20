@@ -55,14 +55,16 @@ estimar.radiacion <- function(lat, data, cal=NA) {
     rad.mh.data <- estimar.por.mh.csv(lat=lat, data=data)
     
     # Random Forests
-    rad.rfA.data <- predict(rfA, data)
-    rad.rfB.data <- predict(rfB, data)
+    rad.rfAll.data <- predict(rfAll, data)
+    rad.rfHelio.data <- predict(rfHelio, data)
+    rad.rfPrcp.data <- predict(rfPrcp, data)
     
     # Devolvemos un Data Frame donde el nombre del campo es la abreviación del nombre
     # del método y agregamos los valores medidos de la radiación como el campo 'data'.
     
     resultados.data <- data.frame(Date=data$Date, bc=rad.bc.data, ha=rad.ha.data, mh=rad.mh.data, su=rad.su.data,
-                                  ap=rad.ap.data, rfA=rad.rfA.data, rfB=rad.rfB.data, data=data$Solrad)
+                                  ap=rad.ap.data, rfAll=rad.rfAll.data, rfHelio=rad.rfHelio.data,
+                                  rfPrcp=rad.rfPrcp.data, data=data$Solrad)
     
     return(resultados.data)
 }
@@ -82,6 +84,9 @@ ajustar.radiacion <- function(lat, resultados) {
     resultados$su <- mapply(min, resultados$su, maxRad)
     # Angstrom-Prescott
     resultados$ap <- mapply(min, resultados$ap, maxRad)
+    
+    resultados$rfAll <- mapply(min, resultados$rfAll, maxRad)
+    resultados$rfHelio <- mapply(min, resultados$rfHelio, maxRad)
     
     return(resultados)
 }

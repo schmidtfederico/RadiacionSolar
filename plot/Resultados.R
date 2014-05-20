@@ -16,15 +16,9 @@ plotear.resultados.todos <- function(resultados, errores) {
 
 
 plotear.resultados <- function(resultados, errores, plots='a', metodo) {
-    if(metodo == 'ap') {
-        # Como puede ser que se tengan menos valores de Heliofanía que de mediciones reales de 
-        # radiación solar en MJ/m², filtramos los datos por donde la heliofanía NO es "NA".
-        resultados <- resultados[!is.na(resultados$ap),]
-    }
-    if(metodo == 'su') {
-        # Se pueden tener menos mediciones de nubosidad que de radiación solar.
-        resultados <- resultados[!is.na(resultados$su),]
-    }
+    
+    resultados <- resultados[!is.na(resultados[, metodo]),]
+    
     
     data <- resultados$data
     # Extraemos del data frame la predicción para el método especificado y los errores
