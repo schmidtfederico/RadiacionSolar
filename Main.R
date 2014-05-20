@@ -20,16 +20,16 @@ bsas.estimacion <- buenos.aires[!buenos.aires$Date %in% bsas.calibracion$Date,]
 source('rf/RandomForest.R')
 
 ######################################## Estación Pilar ########################################
-calibracion.pilar <- calibrar.por.mes.csv(lat=lat.pilar, pilar.calibracion)
-resultados.pilar <- estimar.por.mes(lat=lat.pilar, pilar.estimacion, cal=calibracion.pilar)
+calibracion.pilar <- calibrar.todos.csv(lat=lat.pilar, pilar.calibracion)
+resultados.pilar <- estimar.radiacion(lat=lat.pilar, pilar.estimacion, cal=calibracion.pilar)
 error.pilar <- calcular.errores(resultados=resultados.pilar)
 
 resultados.pilar.ajustados <- ajustar.radiacion(lat=lat.pilar, resultados.pilar)
 error.pilar.ajustado <- calcular.errores(resultados=resultados.pilar.ajustados)
 
 ##################################### Estación Buenos Aires ####################################
-calibracion.bsas <- calibrar.por.mes.csv(lat=lat.bsas, bsas.calibracion)
-resultados.bsas <- estimar.por.mes(lat=lat.bsas, bsas.estimacion, cal=calibracion.bsas)
+calibracion.bsas <- calibrar.todos.csv(lat=lat.bsas, bsas.calibracion)
+resultados.bsas <- estimar.radiacion(lat=lat.bsas, bsas.estimacion, cal=calibracion.bsas)
 error.bsas <- calcular.errores(resultados=resultados.bsas)
 
 resultados.bsas.ajustados <- ajustar.radiacion(lat=lat.bsas, resultados.bsas)

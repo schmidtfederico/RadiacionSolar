@@ -20,6 +20,10 @@ plot.xtable <- function(data.frame, digits=2, ...) {
 }
 
 plot.calibracion <- function(cal.data, ...) {
+    if(!is.null(nrow(cal.data))){
+        plot.calibracion.mensual(cal.data, ...)
+        return();
+    }
     df <- data.frame(cal.data)
     colnames(df) <- c('Valor')
     plot.xtable(df, digits=5, hline.after=(c(-1, 0, 1, 3, 6, 8)), ...)

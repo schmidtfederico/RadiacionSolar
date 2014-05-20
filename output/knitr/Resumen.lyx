@@ -245,7 +245,7 @@ Calibración
 \end_layout
 
 \begin_layout Standard
-La calibración se realiza por mes muestreando el 
+La calibración se realiza muestreando el 
 \begin_inset ERT
 status open
 
@@ -276,7 +276,7 @@ status open
 
 \begin_layout Plain Layout
 
-plot.calibracion.mensual(calibracion.pilar)
+plot.calibracion(calibracion.pilar)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1158,13 +1158,20 @@ Calibración
 \end_layout
 
 \begin_layout Standard
-La calibración se realiza por mes muestreando el 50% de los datos disponibles
- y se estima sobre el otro 50% de los datos.
+La calibración se realiza muestreando el 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Sexpr{(porcentaje.calibracion*100)}
 \end_layout
 
-\begin_layout Standard
-De los datos usados para calibrar, se muestrea nuevamente el 50% de los
- datos de cada mes.
+\end_inset
+
+% de los datos disponibles.
 \end_layout
 
 \begin_layout Standard
@@ -1182,7 +1189,7 @@ status open
 
 \begin_layout Plain Layout
 
-plot.calibracion.mensual(calibracion.bsas)
+plot.calibracion(calibracion.bsas)
 \end_layout
 
 \begin_layout Plain Layout
