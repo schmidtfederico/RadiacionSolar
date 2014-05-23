@@ -9,3 +9,4 @@ lat.laboulaye <- -34.13
 lat.pergamino <- -33.93
 lat.pilar <- -31.67
 lat.bsas <- -34.58
+lat.lujan <- -34.59

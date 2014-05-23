@@ -26,3 +26,4 @@ muestrear <- function(data, perc=0.7) {
 pilar = read.not.na("rad/data/Pilar.csv")
 buenos.aires = read.not.na("rad/data/BsAs.csv")
 buenos.aires <- buenos.aires[buenos.aires$Date < '2014-01-01',]
+lujan <- read.not.na("rad/data/Luján~San Miguel.csv")
